@@ -1,31 +1,33 @@
-import java.util.*;
 package model;
+import java.util.*;
+
 
 public class TrainCardDeck{
 	//deck
-	private ArrayList<TrainCarCard> trainDeck;
+	private ArrayList<TrainCard> trainDeck;
 	//discard pile
-	private LinkedList<TrainCarCard> trainDiscard;
+	private LinkedList<TrainCard> trainDiscard;
 	//cards on the table
-	private LinkedList<TrainCarCard> tableCards;
+	private LinkedList<TrainCard> tableCards;
 	//placeholder for now
-	private TrainCarCard card;
+	private TrainCard card;
 	//contruusttor will t
 	TrainCardDeck(){
-		trainDeck.Shuffle();
+		/*trainDeck.Shuffle();*/
 	}
 	private void Shuffle() {
 	
 }
 	//test if player wants cards from deck or table and takes the action
-	public TrainCarCard Draw(Boolean t) {
-		if(t) 
+	public TrainCard Draw(Boolean t) {
+		/*if(t)
 		    return trainDiscard.addFrist(trainDeck.pop());
 		else
-			return this.toTable(int pos);
+			return this.toTable(int pos);*/
+		return null;
 	}
 	// giving the player a card the card they want from the table
-	public TrainCarCard(int pos) {
+	public TrainCard TrainCarCard(int pos) {
 		return card;
 	}
 	

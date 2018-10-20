@@ -62,14 +62,12 @@ public class Player {
     public boolean addPoints(int a){
         int oldpoints = points;
         points += a;
-        if (points > oldpoints) return true;
-        else return false;
+        return points > oldpoints;
     }
     public boolean subPoints(int s){
         int oldpoints = points;
         points -= s;
-        if (points < oldpoints) return true;
-        else return false;
+        return points < oldpoints;
     }
     public boolean turn(){
         //tbd 
