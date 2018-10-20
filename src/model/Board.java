@@ -4,12 +4,15 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : MM/DD/YY HH:HH
+ * Last Modified    : 10/20/18 00:11
+ *
+ * This class represents the game board. It will get cards and pieces placed on it. Players will interact with those
+ * cards and pieces placed on the board.
  */
 
 package model;
 
-class Board {
+public class Board {
 
     private class Destination_Ticket_Deck {
         private void Shuffle() {}
@@ -41,20 +44,16 @@ class Board {
 
     // Fake prototypes
     private void Init_Destination_Cards() {
-        // Fake prototypes for cards
         Destination_Ticket_Deck dtd = new Destination_Ticket_Deck();
         dtd.Shuffle();
     }
     private void Init_Discard_Cards() {
-
         Train_Car_Discard tcd = new Train_Car_Discard();
     }
     private void Init_Face_Up_Cards() {
-        // 5 cards
         Train_Car_Faceup tcf = new Train_Car_Faceup();
     }
     private void Init_Longest_Path_Card() {
-        // 1 card
         Longest_Path lp = new Longest_Path();
     }
 

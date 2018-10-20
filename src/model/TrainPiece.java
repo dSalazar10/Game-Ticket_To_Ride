@@ -4,14 +4,14 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : MM/DD/YY HH:HH
+ * Last Modified    : 10/20/18 00:11
  *
  * This class represents one of 240 total Train Pieces divided into five colors.
  * Colors: Blue, Red, Green, Yellow, and Black.
  */
 
 package model;
-class TrainPiece {
+public class TrainPiece {
 
     // Variables
     private String color;

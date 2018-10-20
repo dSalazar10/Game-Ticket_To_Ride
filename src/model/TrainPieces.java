@@ -4,7 +4,7 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : MM/DD/YY HH:HH
+ * Last Modified    : 10/20/18 00:11
  *
  * This class represents the pieces that will be placed by the players on the board
  * to cover up the routes from one city to another. There are 5 colors: Blue, Red,
@@ -16,7 +16,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-class TrainPieces {
+public class TrainPieces {
 
     // This list will be exactly 240 elements: 5 rows and 45 columns
     // Each row represents the colors
@@ -32,7 +32,7 @@ class TrainPieces {
     }
 
     // Default constructor
-    TrainPieces() {
+    public TrainPieces() {
         // Initialize the list (empty)
         pieces = new ArrayList<>();
 
