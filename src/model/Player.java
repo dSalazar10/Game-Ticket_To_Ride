@@ -11,9 +11,9 @@ import java.util.List;
  * @author Adam Hennefer
  */
 public class Player {
-    List<TrainPieces> pieces;
-    List<TrainCar> carCards;
-    int points;
+    private List<TrainPieces> pieces;
+    private List<TrainCard> carCards;
+    private int points;
     
     public void player(){
         pieces = new ArrayList<>();
