@@ -11,7 +11,7 @@ import java.util.List;
  * @author Adam Hennefer
  */
 public class Player {
-    List<Train_Pieces> pieces;
+    List<TrainPieces> pieces;
     List<TrainCard> carCards;
     int points;
     
@@ -21,7 +21,7 @@ public class Player {
         points = 0;
     }
     
-    public Train_Pieces getTrainPieces(){
+    public TrainPieces getTrainPieces(){
         return pieces.get(0); 
         //tbd
     }
