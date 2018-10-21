@@ -11,13 +11,13 @@ import java.util.List;
  * @author Adam Hennefer
  */
 public class Player {
-    List<TrainPieces> pieces;
-    List<TrainCar> carCards;
+    List<Train_Pieces> pieces;
+    //List<TrainCar> carCards;
     int points;
     
     public void player(){
         pieces = new ArrayList<>();
-        carCards = new ArrayList<>();
+        //carCards = new ArrayList<>();
         points = 0;
     }
     /*
