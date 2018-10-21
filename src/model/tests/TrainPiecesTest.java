@@ -3,9 +3,12 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : 10/20/18 00:11
+ * Last Modified    : 10/21/18 10:25
  *
  * This tests the initialization of the TrainPieces 2D List.
+ * Example:
+ * 10 TrainPiecesTest test = new TrainPiecesTest();
+ * 20 test.testDuplicates();
  */
 
 package model.tests;
@@ -42,17 +45,13 @@ public class TrainPiecesTest {
         yellow = t.getPieces(TrainPieces.COLOR.YELLOW);
     }
 
-    @After
-    public void tearDown() {
-    }
-
     @Test
-    public void testTrainPieces() {
+    public void testDuplicates() {
 
+        setUp();
         /* Test Duplicates */
         wrong = t.getPieces(TrainPieces.COLOR.BLACK);
-        if(wrong.isEmpty())
-            fail();
+        assertEquals(null, wrong);
 
     }
 }

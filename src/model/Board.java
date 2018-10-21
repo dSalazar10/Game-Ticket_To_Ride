@@ -4,7 +4,7 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : 10/20/18 00:11
+ * Last Modified    : 10/21/18 10:24
  *
  * This class represents the game board. It will get cards and pieces placed on it. Players will interact with those
  * cards and pieces placed on the board.
@@ -14,6 +14,7 @@ package model;
 
 public class Board {
 
+    // Fake prototypes
     private class Destination_Ticket_Deck {
         private void Shuffle() {}
     }
@@ -24,6 +25,8 @@ public class Board {
     private class Longest_Path {
     }
 
+    // Variables
+    TrainCardDeck deck;
     String routes[] = new String[] {"Vancouver","Calgary","Winnipeg","Seattle","Portland","Helena","Salt Lake City",
             "Denver","San Francisco","Las Vegas","Santa Fe","Los Angeles","Phoenix","El Paso","Oklahoma City",
             "Duluth","Omaha","Kansas City","Dallas","Houston","Chicago","Saint Louis","Little Rock","New Orleans",
@@ -31,7 +34,7 @@ public class Board {
             "Boston","Montreal","Sault Ste. Marie"};
 
     // Default Constructor
-    Board() {
+    public Board() {
         // Fake prototypes
         Init_Destination_Cards();
         Init_Discard_Cards();
@@ -60,8 +63,7 @@ public class Board {
     // Initialize the Train Car Card Deck and Shuffle
     private void initTrainCardCards() {
         // Variables
-        TrainCardDeck trainCarDeck = new TrainCardDeck();
-        //trainCarDeck.Shuffle();
+        deck = new TrainCardDeck();
     }
 
 

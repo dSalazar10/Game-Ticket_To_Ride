@@ -11,10 +11,10 @@ import java.util.List;
  * @author Adam Hennefer
  */
 public class Player {
-    private List<TrainPieces> pieces;
-    private List<TrainCard> carCards;
-    private int points;
-    
+    List<TrainPieces> pieces;
+    List<TrainCar> carCards;
+    int points;
+
     public void player(){
         pieces = new ArrayList<>();
         carCards = new ArrayList<>();
@@ -62,15 +62,17 @@ public class Player {
     public boolean addPoints(int a){
         int oldpoints = points;
         points += a;
-        return points > oldpoints;
+        if (points > oldpoints) return true;
+        else return false;
     }
     public boolean subPoints(int s){
         int oldpoints = points;
         points -= s;
-        return points < oldpoints;
+        if (points < oldpoints) return true;
+        else return false;
     }
     public boolean turn(){
-        //tbd 
+        //tbd
         return false;
     }
 }
