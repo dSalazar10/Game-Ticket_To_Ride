@@ -1,5 +1,5 @@
 /*
- * FileName.java
+ * BoardTest.java
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
