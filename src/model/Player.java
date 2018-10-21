@@ -14,7 +14,7 @@ public class Player {
     List<TrainPieces> pieces;
     List<TrainCar> carCards;
     int points;
-    
+
     public void player(){
         pieces = new ArrayList<>();
         carCards = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Player {
         else return false;
     }
     public boolean turn(){
-        //tbd 
+        //tbd
         return false;
     }
 }

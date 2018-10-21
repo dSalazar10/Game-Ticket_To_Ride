@@ -15,12 +15,12 @@ public class TrainCardDeck{
 		trainDeck.Shuffle();
 	}
 	private void Shuffle() {
-	
-}
+
+	}
 	//test if player wants cards from deck or table and takes the action
 	public TrainCarCard Draw(Boolean t) {
-		if(t) 
-		    return trainDiscard.addFrist(trainDeck.pop());
+		if(t)
+			return trainDiscard.addFrist(trainDeck.pop());
 		else
 			return this.toTable(int pos);
 	}
@@ -28,5 +28,5 @@ public class TrainCardDeck{
 	public TrainCarCard(int pos) {
 		return card;
 	}
-	
+
 }
