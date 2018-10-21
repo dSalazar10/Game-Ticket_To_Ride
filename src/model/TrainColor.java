@@ -7,7 +7,7 @@
  */
 
 package model;
-// enum synched with TrainType
+// enum in order with TrainType
 public enum TrainColor{
     Rainbow, Pink, White, Blue, Yellow, Orange, Black, Red, Green;
 }
