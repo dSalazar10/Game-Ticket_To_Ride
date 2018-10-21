@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Player {
     List<TrainPieces> pieces;
-    List<TrainCar> carCards;
+    List<TrainCard> carCards;
     int points;
 
     public void player(){
@@ -20,11 +20,12 @@ public class Player {
         carCards = new ArrayList<>();
         points = 0;
     }
-    /*
+    
     public TrainPieces getTrainPieces(){
+        return pieces.get(0); 
         //tbd
     }
-    */
+    
     public boolean insertTrainPiece(){
         //tbd
         return false;
@@ -33,11 +34,12 @@ public class Player {
         //tbd
         return false;
     }
-    /*
-    public TrainCar getTrainCar(){
+    
+    public TrainCard getTrainCar(){
+        return carCards.get(0);
         //tbd
     }
-    */
+    
     public boolean insertTrainCar(){
         //tbd
         return false;
