@@ -1,8 +1,13 @@
 package model;
-//made so the porgram can compile
-public class TrainCard{
-	int x;
-	TrainCard(){
-		x = 25;
+//
+	public class TrainCard{
+	private TrainColor color;
+	private TrainType type;
+
+	TrainCard(int pos){
+		this.color = TrainColor.values()[pos];
+		this.type = TrainType.values()[pos];
 	}
+	public TrainColor getColor() { return this.color; }
+	public TrainType getType() {return this.type; }
 }
