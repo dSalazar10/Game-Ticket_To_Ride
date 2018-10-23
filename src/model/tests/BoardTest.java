@@ -26,6 +26,7 @@ public class BoardTest {
 
     @Test
     public void testBoard() {
+        // TODO : Make some tests
 
     }
 }
