@@ -14,7 +14,7 @@ public class TrainCardDeck {
 	private TrainCard card;
 
 	//contruusttor will t
-	TrainCardDeck() {
+	public TrainCardDeck() {
 		trainDeck = new LinkedList<TrainCard>();
 		int i = 0;
 		// creates the locomotive cards
