@@ -1,32 +1,54 @@
 /*
- * Player skeleton class
+ * Player.java
+ * Version 0.1.2    : Setup
+ * Programmer       : Adam Hennefer
+ * Due Date         : 10/24/18
+ * Last Modified    : 10/23/18 5:40
+ *
+ * This class represents the a player.
+ *  
  */
 package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Adam Hennefer
- */
 public class Player {
-    List<TrainPieces> pieces;
-    List<TrainCard> carCards;
-    int points;
-
-    public void player(){
-        pieces = new ArrayList<>();
+    private List<TrainPiece> pieces;
+    private ArrayList<TrainCard> carCards;
+    private ArrayList<DestinationCard> destCards;
+    private int points;
+    private String name;
+    
+    // construct player object
+    public void player(String n, TrainPieces.COLOR c){
+        //set players name
+        name = n;
+        //initialize ArrayList of forty five train pieces with players color
+        pieces = new TrainPieces().getPieces(c); 
+        //initialize ArrayList of four traincar cards
         carCards = new ArrayList<>();
+            TrainCardDeck deck = null;
+            while(carCards.size() < 3){
+                carCards.add(deck.Draw(Boolean.TRUE));
+            }
+        //initialize ArrayList of three destination cards    
+        destCards = new ArrayList<>();
+            DestinationTicketSet dCard = null;
+            while(destCards.size() < 2){
+                // waiting for draw method.
+               // destCards.add(dCard.Draw());
+            }
+        //initialize points set to zero    
         points = 0;
     }
     
-    public TrainPieces getTrainPieces(){
-        return pieces.get(0); 
+    public List<TrainPiece> getTrainPieces(){
+        return this.pieces; 
         //tbd
     }
     
-    public boolean insertTrainPiece(){
+    public boolean insertTrainPiece(TrainPiece tp){
         //tbd
         return false;
     }
@@ -35,8 +57,8 @@ public class Player {
         return false;
     }
     
-    public TrainCard getTrainCar(){
-        return carCards.get(0);
+    public ArrayList<TrainCard> getTrainCar(){
+        return this.carCards;
         //tbd
     }
     
@@ -48,11 +70,12 @@ public class Player {
         //tbd
         return false;
     }
-    /*
-    public DestTixCard getDestTixCard(){
+    
+    public ArrayList<DestinationCard> getDestTixCard(){
         //tbd
+        return this.destCards;
     }
-    */
+    
     public boolean insertDestTixCard(){
         //tbd
         return false;
@@ -64,14 +87,12 @@ public class Player {
     public boolean addPoints(int a){
         int oldpoints = points;
         points += a;
-        if (points > oldpoints) return true;
-        else return false;
+        return points > oldpoints;
     }
     public boolean subPoints(int s){
         int oldpoints = points;
         points -= s;
-        if (points < oldpoints) return true;
-        else return false;
+        return points < oldpoints;
     }
     public boolean turn(){
         //tbd
