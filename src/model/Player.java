@@ -1,9 +1,9 @@
 /*
  * Player.java
- * Version 0.1.1    : Setup
+ * Version 0.1.2    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 10/24/18
- * Last Modified    : 10/23/18 12:30
+ * Last Modified    : 10/23/18 5:40
  *
  * This class represents the a player.
  *  
@@ -11,44 +11,44 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
-    private ArrayList<TrainPieces> pieces;
+    private List<TrainPiece> pieces;
     private ArrayList<TrainCard> carCards;
     private ArrayList<DestinationCard> destCards;
     private int points;
-
-    public void player(){
-        this.pieces = new ArrayList<>(); 
-            TrainPieces tPieces = null;
-            //initialize ArrayList of forty five train pieces
-            while(pieces.size() < 44){
-               // pieces.add(tPieces.getPieces(TrainPieces.COLOR.BLACK));
-            }
-            
-        this.carCards = new ArrayList<>();
-            //initialize ArrayList of four traincar cards
+    private String name;
+    
+    // construct player object
+    public void player(String n, TrainPieces.COLOR c){
+        //set players name
+        name = n;
+        //initialize ArrayList of forty five train pieces with players color
+        pieces = new TrainPieces().getPieces(c); 
+        //initialize ArrayList of four traincar cards
+        carCards = new ArrayList<>();
             TrainCardDeck deck = null;
             while(carCards.size() < 3){
                 carCards.add(deck.Draw(Boolean.TRUE));
             }
-        this.destCards = new ArrayList<>();
-            //initialize ArrayList of three destination cards
+        //initialize ArrayList of three destination cards    
+        destCards = new ArrayList<>();
             DestinationTicketSet dCard = null;
             while(destCards.size() < 2){
                 // waiting for draw method.
                // destCards.add(dCard.Draw());
             }
-        //initial points set to zero    
-        this.points = 0;
+        //initialize points set to zero    
+        points = 0;
     }
     
-    public ArrayList<TrainPieces> getTrainPieces(){
+    public List<TrainPiece> getTrainPieces(){
         return this.pieces; 
         //tbd
     }
     
-    public boolean insertTrainPiece(){
+    public boolean insertTrainPiece(TrainPiece tp){
         //tbd
         return false;
     }
