@@ -3,7 +3,7 @@
  * Version 0.1.2    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 10/24/18
- * Last Modified    : 10/23/18 5:40
+ * Last Modified    : 10/23/18 9:45
  *
  * This class represents the a player.
  *  
@@ -19,6 +19,7 @@ public class Player {
     private ArrayList<DestinationCard> destCards;
     private int points;
     private String name;
+    private Board board;
     
     // construct player object
     public void Player(String n, TrainPieces.COLOR c){
