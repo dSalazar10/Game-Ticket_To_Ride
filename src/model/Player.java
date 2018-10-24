@@ -20,9 +20,10 @@ public class Player {
     private int points;
     private String name;
     private Board board;
+
     
     // construct player object
-    public void Player(String n, TrainPieces.COLOR c){
+    public Player(String n, TrainPieces.COLOR c){
         //set players name
         name = n;
         //initialize ArrayList of forty five train pieces with players color
