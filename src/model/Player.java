@@ -21,7 +21,7 @@ public class Player {
     private String name;
     
     // construct player object
-    public void player(String n, TrainPieces.COLOR c){
+    public void Player(String n, TrainPieces.COLOR c){
         //set players name
         name = n;
         //initialize ArrayList of forty five train pieces with players color
