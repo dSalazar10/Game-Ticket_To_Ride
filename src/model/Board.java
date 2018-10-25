@@ -4,7 +4,7 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : 10/21/18 10:24
+ * Last Modified    : 10/23/18 21:22
  *
  * This class represents the game board. It will get cards and pieces placed on it. Players will interact with those
  * cards and pieces placed on the board.
@@ -21,6 +21,7 @@ public class Board {
     // Variables
     TrainCardDeck trainDeck, discard, faceup;
     DestinationTicketSet destDeck;
+    TrainPieces trainPieces;
     String routes[] = new String[] {"Vancouver","Calgary","Winnipeg","Seattle","Portland","Helena","Salt Lake City",
             "Denver","San Francisco","Las Vegas","Santa Fe","Los Angeles","Phoenix","El Paso","Oklahoma City",
             "Duluth","Omaha","Kansas City","Dallas","Houston","Chicago","Saint Louis","Little Rock","New Orleans",
@@ -33,6 +34,7 @@ public class Board {
         Init_Longest_Path_Card();
 
         // Variables
+        trainPieces = new TrainPieces();
         initTrainCardCards();
         initDestinationDeck();
         initDiscardCards();

@@ -21,25 +21,27 @@ public class Player {
     private String name;
     private Board board;
     
+    
     // construct player object
-    public void Player(String n, TrainPieces.COLOR c){
+    public Player(String n, TrainPieces.COLOR c){
         //set players name
         name = n;
         //initialize ArrayList of forty five train pieces with players color
         pieces = new TrainPieces().getPieces(c); 
         //initialize ArrayList of four traincar cards
-        carCards = new ArrayList<>();
-            TrainCardDeck deck = null;
-            while(carCards.size() < 3){
-                carCards.add(deck.Draw(Boolean.TRUE));
-            }
-        //initialize ArrayList of three destination cards    
-        destCards = new ArrayList<>();
-            DestinationTicketSet dCard = null;
-            while(destCards.size() < 2){
-                // waiting for draw method.
-               // destCards.add(dCard.Draw());
-            }
+        
+//        carCards = new ArrayList<>();
+//            TrainCardDeck deck = null;
+//            while(carCards.size() < 3){
+//                carCards.add(deck.Draw(Boolean.TRUE));
+//            }
+//        //initialize ArrayList of three destination cards    
+//        destCards = new ArrayList<>();
+//            DestinationTicketSet dCard = null;
+//            while(destCards.size() < 2){
+//                // waiting for draw method.
+//               // destCards.add(dCard.Draw());
+//            }
         //initialize points set to zero    
         points = 0;
     }
@@ -99,4 +101,13 @@ public class Player {
         //tbd
         return false;
     }
+    @Override
+	public boolean equals(Object x){
+		if(!(x instanceof Player)){ 
+                    return false; 
+                }
+		Player y = (Player)x;
+                //&& this.pieces == y.pieces
+		return this.name.equals(y.name);
+	}
 }
