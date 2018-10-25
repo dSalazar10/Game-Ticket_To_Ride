@@ -11,6 +11,8 @@ import model.Player;
 import model.TrainPieces;
 import static model.TrainPieces.COLOR.BLACK;
 import static model.TrainPieces.COLOR.BLUE;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +25,10 @@ public class PlayerTest {
     private TrainPieces.COLOR blue;
         
     @Before
-    public void playerTest() {
+    public void setup() {
         String alice = "Alice";
         String bob = "Bob";
-        black = model.TrainPieces.COLOR.BLACK ;
+        black = model.TrainPieces.COLOR.BLACK;
         blue = model.TrainPieces.COLOR.BLUE;
         p1 = new Player(alice, black);
         p2 = new Player(bob, blue);
@@ -34,9 +36,10 @@ public class PlayerTest {
 
     @Test
     public void testPlayer() {
-        assertEquals(p1, p2);
-
+        setup();
+        assertEquals(p1, p1);
     }
-}
     
 }
+    
+
