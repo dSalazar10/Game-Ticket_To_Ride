@@ -40,10 +40,17 @@ public class Board {
     public List<TrainCard> get2TrainCards() {
         // TODO: Get 2 Train Cards
         /*
+        // A list of one or two cards
         List<TrainCard> cards = new ArrayList<>();
+
+        // Either draw a card from the dest deck
         cards.add(drawTrainCard());
+
+        // Or draw a card from the table
         int FarLeft = 0;
         cards.add(faceUpDraw(FarLeft));
+
+        // return card(s)
         return cards;
         */
         return null;
