@@ -46,6 +46,11 @@ public class Player {
         points = 0;
     }
     
+    public boolean addBoard(Board b){
+        board = b;
+        return board == b;
+    }
+    
     public List<TrainPiece> getTrainPieces(){
         return this.pieces; 
         //tbd
