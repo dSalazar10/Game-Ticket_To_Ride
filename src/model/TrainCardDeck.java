@@ -1,6 +1,14 @@
+/*
+ * FileName.java
+ * Version 0.1.4    : Setup
+ * Programmer       : Nasario Sylvester
+ * Due Date         : 10/24/18
+ * Last Modified    : MM/DD/YY HH:HH
+ */
 package model;
 import java.util.LinkedList;
-
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class TrainCardDeck {
@@ -9,17 +17,15 @@ public class TrainCardDeck {
 	//discard pile
 	private LinkedList<TrainCard> trainDiscard;
 	//cards on the table
-	private LinkedList<TrainCard> tableCards;
-	//placeholder for now
-	private TrainCard card;
+	private ArrayList<TrainCard> tableCards;
 
-	//contruusttor will t
+	// constructor makes deck and shuffles cards
 	public TrainCardDeck() {
 		trainDeck = new LinkedList<TrainCard>();
 		int i = 0;
 		// creates the locomotive cards
 		// and adds them to the end of the deck
-		while(i < 14){
+		while (i < 14) {
 			trainDeck.add(new TrainCard(0));
 			i++;
 		}
@@ -27,18 +33,19 @@ public class TrainCardDeck {
 		int j = 0;
 		// Creates all cards and add them to the deck end of the deck
 
-		while(j < 8){
-			while(i < 12){
+		while (j < 8) {
+			while (i < 12) {
 				trainDeck.add(new TrainCard(j));
 				i++;
 			}
 			j++;
 		}
-		this.Shuffle();
-	}
+		Collections.shuffle(trainDeck);
+		// 5 cards to the table
+		for(int k = 0; k < 5; k++){
 
-	private void Shuffle() {
-
+			tableCards.add(trainDeck.pop());
+		}
 	}
 
 	//test if player wants cards from deck or table and takes the action
@@ -57,5 +64,13 @@ public class TrainCardDeck {
 
 	public TrainCard toTable(int pos) {
 		return new TrainCard(1);
+	}
+	// returns 4 cards to the player;
+	public ArrayList<TrainCard> Deal() {
+	ArrayList<TrainCard> toPlayer = new ArrayList<TrainCard>();
+	for(int i = 0; i < 4; i++){
+		toPlayer.add(this.trainDeck.pop());
+	}
+	return toPlayer;
 	}
 }
