@@ -10,6 +10,8 @@ package ticket2ride;
 // Include all the classes from the model package
 import model.*;
 
+import java.util.List;
+
 /* End Edit - DS */
 
 /**
@@ -35,4 +37,37 @@ public class Ticket2Ride {
         /* End Edit - DS */
     }
 
+    /* Edit - DS */
+
+    /*
+     * @param    The action chosen by the player:
+     *           1. Draw Action (Get 2 Train Car Cards)
+     *           2. Claim a route
+     *           3. Draw Action (Get 3 Destination Ticket Cards)
+     */
+    public void takeTurn(Board board, int action) {
+        if(action == 1)
+            board.claimRoute(board);
+        else
+            drawAction(board, action);
+    }
+
+    /*
+     * @param    The action chosen by the player:
+     *           1. Get 2 Train Car Cards
+     *           2. (Claim a route)
+     *           3. Get 3 Destination Ticket Cards
+     * @return
+     */
+    private List<TrainCard> drawAction(Board board, int action) {
+        if(action < 1) {
+            List<TrainCard> trainCards = board.get2TrainCards();
+            return trainCards;
+        } else {
+            List<TrainCard> destCards = board.get3DestCards();
+            return destCards;
+        }
+    }
+
+    /* End Edit - DS */
 }

@@ -12,6 +12,9 @@
 
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     // Variables
@@ -33,57 +36,45 @@ public class Board {
         trainPieces = new TrainPieces();
     }
 
+    // Get 2 Train Car Cards
+    public List<TrainCard> get2TrainCards() {
+        // TODO: Get 2 Train Cards
+        /*
+        List<TrainCard> cards = new ArrayList<>();
+        cards.add(drawTrainCard());
+        int FarLeft = 0;
+        cards.add(faceUpDraw(FarLeft));
+        return cards;
+        */
+        return null;
+    }
+    // Claim a route
+    public Boolean claimRoute(Board board) {
+        // TODO: Claim a route from the Board's route list
+        return null;
+    }
+    // Get 3 Destination Ticket Cards
+    public List<TrainCard> get3DestCards() {
+        // TODO: Get 3 Destination Cards
+        return null;
+    }
+
     /* *
-    * This method allows the Player to draw a card during their turn
-    *
-    * @return The TrainCard located at the top of the deck.
-    */
+     * This method allows the Player to draw a card during their turn
+     * <p>
+     * @return The TrainCard located at the top of the deck.
+     */
     private TrainCard drawTrainCard() {
         return this.trainDeck.Draw(true);
     }
 
     /* *
      * This method allows the Player to draw a card during their turn
-     *
+     * <p>
      * @return The TrainCard chose by Player
      */
     private TrainCard faceUpDraw(int at) {
         return this.trainDeck.fromTable(at);
     }
-
-    /*
-    * @param    The action chosen by the player:
-    *           1. Draw Action (Get 2 Train Car Cards)
-    *           2. Claim a route
-    *           3. Draw Action (Get 3 Destination Ticket Cards)
-    */
-    public void takeTurn(int action) {
-        if(action == 1)
-            claimRoute();
-        else
-            drawAction(action);
-
-    }
-
-    /*
-     * @param    The action chosen by the player:
-     *           1. Get 2 Train Car Cards
-     *           2. (Claim a route)
-     *           3. Get 3 Destination Ticket Cards
-     */
-    private void drawAction(int action) {
-        if(action < 1)
-            get2TrainCards();
-        else
-            get3DestCards();
-
-    }
-
-    // Get 2 Train Car Cards
-    private void get2TrainCards() {}
-    // Claim a route
-    private void claimRoute() {}
-    // Get 3 Destination Ticket Cards
-    private void get3DestCards() {}
 
 }
