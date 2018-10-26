@@ -5,6 +5,13 @@
  */
 package ticket2ride;
 
+/* Edit - DS */
+
+// Include all the classes from the model package
+import model.*;
+
+/* End Edit - DS */
+
 /**
  *
  * @author PC1
@@ -15,9 +22,20 @@ public class Ticket2Ride {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Initialize the Board
 
-        // Initialize the Player
+        /* Edit - DS */
+
+        // MARK - Variables
+        Board usaBoard = new Board();
+
+
+                            */
+
+
+
+        // MARK - Initialize the Player
+
+        /* End Edit - DS */
     }
 
 }
