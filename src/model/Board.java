@@ -4,7 +4,7 @@
  * Version 0.1.4    : Setup
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : 10/23/18 21:22
+ * Last Modified    : 10/25/18 23:13
  *
  * This class represents the game board. It will get cards and pieces placed on it. Players will interact with those
  * cards and pieces placed on the board.
@@ -19,7 +19,7 @@ public class Board {
     }
 
     // Variables
-    TrainCardDeck trainDeck, discard, faceup;
+    TrainCardDeck trainDeck;
     DestinationTicketSet destDeck;
     TrainPieces trainPieces;
     String routes[] = new String[] {"Vancouver","Calgary","Winnipeg","Seattle","Portland","Helena","Salt Lake City",
@@ -30,32 +30,20 @@ public class Board {
 
     // Default Constructor
     public Board() {
+
         // Fake prototypes
         Init_Longest_Path_Card();
 
         // Variables
+        trainDeck = new TrainCardDeck();
+        destDeck = new DestinationTicketSet();
         trainPieces = new TrainPieces();
-        initTrainCardCards();
-        initDestinationDeck();
-        initDiscardCards();
-        initFaceUpCards();
+
+
     }
 
     // Fake prototypes
     private void Init_Longest_Path_Card() {
         Longest_Path lp = new Longest_Path();
     }
-
-    // Initialize the Train Car Card Deck and Shuffle
-    private void initTrainCardCards() { trainDeck = new TrainCardDeck(); }
-    private void initDestinationDeck() {
-        destDeck = new DestinationTicketSet();
-    }
-    private void initDiscardCards() {
-        discard = new TrainCardDeck();
-    }
-    private void initFaceUpCards() {
-        faceup = new TrainCardDeck();
-    }
-
 }
