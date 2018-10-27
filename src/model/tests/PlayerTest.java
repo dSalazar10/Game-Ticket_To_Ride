@@ -3,7 +3,7 @@
  * Version 0.1.4    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 10/24/18
- * Last Modified    : 10/23/18 9:45
+ * Last Modified    : 10/26/18 7:30
  */
 package model.tests;
 
@@ -37,7 +37,8 @@ public class PlayerTest {
     @Test
     public void testPlayer() {
         setup();
-        assertEquals(p1, p1);
+        //assertEquals(p2, p2);
+        assertNotSame(p1, p2);
     }
     
 }
