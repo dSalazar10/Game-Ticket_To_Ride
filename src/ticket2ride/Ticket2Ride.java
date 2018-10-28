@@ -33,7 +33,10 @@ public class Ticket2Ride {
         Player player1 = new Player("Player 1", TrainPieces.COLOR.RED),
                 player2 = new Player("Player 2", TrainPieces.COLOR.YELLOW),
                 player3 = new Player("Player 3", TrainPieces.COLOR.BLUE);
-
+        player1.addBoard(usaBoard);
+        player2.addBoard(usaBoard);
+        player3.addBoard(usaBoard);
+        
         /* End Edit - DS */
     }
 
