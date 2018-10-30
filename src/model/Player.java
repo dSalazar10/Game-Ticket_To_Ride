@@ -3,9 +3,9 @@
  * Version 0.1.2    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 10/24/18
- * Last Modified    : 10/23/18 9:45
+ * Last Modified    : 10/26/18 7:45
  *
- * This class represents the a player.
+ * This class represents a player.
  *  
  */
 package model;
@@ -20,14 +20,20 @@ public class Player {
     private int points;
     private String name;
     private Board board;
+    private TrainPieces.COLOR pColor;
     
     
     // construct player object
     public Player(String n, TrainPieces.COLOR c){
-        //set players name
+        //set player's name
         name = n;
-        //initialize ArrayList of forty five train pieces with players color
+        
+        //set player's colors
+        pColor = c;
+        
+        //initialize ArrayList of forty five train pieces with player's color
         pieces = new TrainPieces().getPieces(c); 
+        
         //initialize ArrayList of four traincar cards
         
 //        carCards = new ArrayList<>();
@@ -44,6 +50,11 @@ public class Player {
 //            }
         //initialize points set to zero    
         points = 0;
+    }
+    
+    public boolean addBoard(Board b){
+        board = b;
+        return board == b;
     }
     
     public List<TrainPiece> getTrainPieces(){
@@ -97,17 +108,17 @@ public class Player {
         points -= s;
         return points < oldpoints;
     }
+    public int getPoints(){
+        return points;
+    }
     public boolean turn(){
         //tbd
         return false;
     }
     @Override
 	public boolean equals(Object x){
-		if(!(x instanceof Player)){ 
-                    return false; 
-                }
-		Player y = (Player)x;
-                //&& this.pieces == y.pieces
-		return this.name.equals(y.name);
+            if(!(x instanceof Player)){ return false; }
+            Player y = (Player)x;
+            return this.name.equals(y.name) && this.pColor == y.pColor;
 	}
 }
