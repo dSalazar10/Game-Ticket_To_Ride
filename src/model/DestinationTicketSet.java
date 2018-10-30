@@ -7,11 +7,15 @@
  */
 package model;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Collections;
 public class DestinationTicketSet{
     private LinkedList<DestinationCard> Set;
 
-
+    /*
+     * Makes  destTicket deck (Accordance to what is provided
+     * With the game, and shuffles the cards
+     */
     public DestinationTicketSet() {
         Set = new LinkedList<DestinationCard>();
         Set.add(new DestinationCard("Denver", "El Paso", 4));
@@ -48,9 +52,20 @@ public class DestinationTicketSet{
         Collections.shuffle(Set);
     }
 
-
-    public void Draw(){
-
+    /*
+     * Returns a list of 3 cards to the user
+     */
+    public ArrayList<DestinationCard> Draw(ArrayList<DestinationCard> draw){
+        draw = new ArrayList<DestinationCard>();
+        if(Set.isEmpty()){
+            return draw;
+        }
+        for(int i= 0; i < 3; i++){
+            if(Set.isEmpty())
+                return draw;
+            draw.add(Set.pop());
+        }
+        return draw;
     }
     public void RemoveCard(){
 
