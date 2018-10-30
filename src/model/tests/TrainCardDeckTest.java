@@ -14,7 +14,7 @@ import model.TrainCardDeck;
 
 public class TrainCardDeckTest{
     TrainCardDeck x = new TrainCardDeck();
-    TrainCard card1 = x.Draw(true);
+    TrainCard card1 = x.getTopofDeck();
     TrainCard card2 = new TrainCard(0);
 
     @Test
