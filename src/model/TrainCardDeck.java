@@ -183,4 +183,8 @@ public class TrainCardDeck {
 
 			return false;
 		}
+		// for test method
+		public TrainCard getTopofDeck(){
+			return trainDeck.pop();
+		}
 	}
