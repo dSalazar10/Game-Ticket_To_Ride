@@ -60,10 +60,15 @@ public class TrainCardDeck {
 		// Shuffle Cards
 		Collections.shuffle(trainDeck);
 		// 5 cards to the table
-		for (int k = 0; k < 5; k++) {
+		do {
+			if(this.checkTable())
+				this.discardToDeck();
 
-			tableCards.add(trainDeck.pop());
-		}
+			for (int k = 0; k < 5; k++) {
+
+				tableCards.add(trainDeck.pop());
+			}
+		}while(this.checkTable());
 	}
 
 	/*
@@ -92,7 +97,7 @@ public class TrainCardDeck {
 					} while (testCard.equals(locomotive));
 				}
 				draw.add(0, this.fromTable(x));
-				if (draw.get(0).equals(new TrainCard(1))) ;
+				if (draw.get(0).equals(locomotive)) ;
 				{
 					return draw;
 				}
