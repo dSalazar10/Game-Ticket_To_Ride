@@ -69,8 +69,8 @@ public class Player {
 //                pieces.remove(i);
 //                //r.routes.add()......
 //                //tbd
-            }
-        }
+//            }
+//        }
         return false;
     }
     //retrives a train piece of the players list of train pieces
