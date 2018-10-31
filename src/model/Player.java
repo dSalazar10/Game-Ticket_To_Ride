@@ -1,9 +1,9 @@
 /*
  * Player.java
- * Version 0.1.2    : Setup
+ * Version 0.1.5    : Setup
  * Programmer       : Adam Hennefer
- * Due Date         : 10/24/18
- * Last Modified    : 10/26/18 7:45
+ * Due Date         : 11/7/18
+ * Last Modified    : 10/31/18 12:52
  *
  * This class represents a player.
  *  
@@ -21,7 +21,7 @@ public class Player {
     private String name;
     private Board board;
     private TrainPieces.COLOR pColor;
-    
+    private boolean turn = false;
     
     // construct player object
     public Player(String n, TrainPieces.COLOR c){
@@ -34,87 +34,106 @@ public class Player {
         //initialize ArrayList of forty five train pieces with player's color
         pieces = new TrainPieces().getPieces(c); 
         
-        //initialize ArrayList of four traincar cards
-        
+        //initialize ArrayList of four traincar cards        
 //        carCards = new ArrayList<>();
-//            TrainCardDeck deck = null;
-//            while(carCards.size() < 3){
-//                carCards.add(deck.Draw(Boolean.TRUE));
-//            }
-//        //initialize ArrayList of three destination cards    
-//        destCards = new ArrayList<>();
-//            DestinationTicketSet dCard = null;
-//            while(destCards.size() < 2){
-//                // waiting for draw method.
-//               // destCards.add(dCard.Draw());
-//            }
+//        TrainCardDeck deck = new TrainCardDeck();
+//        carCards = deck.toPlayer();
+
+        //initialize ArrayList of three destination cards    
+        destCards = new ArrayList<>();
+        DestinationTicketSet dCard = new DestinationTicketSet();
+        destCards = dCard.Draw(destCards);
+                
         //initialize points set to zero    
         points = 0;
+        
     }
     
     public boolean addBoard(Board b){
         board = b;
         return board == b;
     }
-    
-    public List<TrainPiece> getTrainPieces(){
-        return this.pieces; 
-        //tbd
+   
+    public TrainPiece getTrainPiece(int p){
+        return pieces.get(p);
     }
     
-    public boolean insertTrainPiece(TrainPiece tp){
-        //tbd
+    //public boolean insertTrainPiece(TrainPiece tp){
+    public boolean insertTrainPiece(Board r){
+//        int routeLength  = r.routes.length;
+//        String route[] = r.routes;
+//        int i = 0;
+//        if (r.claimRoute){
+//            while(i < routeLength){
+//                TrainPiece tp = pieces.get(i);
+//                pieces.remove(i);
+//                //r.routes.add()......
+//                //tbd
+            }
+        }
         return false;
     }
-    public boolean removeTrainPiece(){
-        //tbd
-        return false;
+    //retrives a train piece of the players list of train pieces
+    public void removeTrainPiece(int p){
+        pieces.remove(p);
     }
     
-    public ArrayList<TrainCard> getTrainCar(){
-        return this.carCards;
-        //tbd
+    //retrieves a train car from the player's list of train cards 
+    public TrainCard getTrainCar(int c){
+        return carCards.get(c);
     }
     
-    public boolean insertTrainCar(){
-        //tbd
-        return false;
+    // adds a train car card to player's list of train cars
+    public boolean insertTrainCar(TrainCard tc){
+        return carCards.add(tc); 
     }
-    public boolean removeTrainCar(){
-        //tbd
-        return false;
+    // removes a train car card from players list of train cars
+    public void removeTrainCar(int tc){
+        carCards.remove(tc);   
     }
     
+    // returns the players current destinatoin cards
     public ArrayList<DestinationCard> getDestTixCard(){
-        //tbd
         return this.destCards;
     }
     
-    public boolean insertDestTixCard(){
-        //tbd
-        return false;
+    // add a destination card to the players list of destination cards
+    public boolean insertDestTixCard(DestinationCard dc){
+        return destCards.add(dc);
     }
-    public boolean removeDestTixCard(){
-        //tbd
-        return false;
+    
+    // removes a destinatoin card from the plaers list of destination cards
+    public boolean removeDestTixCard(int cNum){
+       // DestinationCard temp = destCards.get(cNum);
+        destCards.remove(cNum);
+       // return temp.retunTo(temp);
+        return true;
     }
+    //add player points
     public boolean addPoints(int a){
         int oldpoints = points;
         points += a;
         return points > oldpoints;
     }
+    // subtract player points
     public boolean subPoints(int s){
         int oldpoints = points;
         points -= s;
         return points < oldpoints;
     }
+    // get player points
     public int getPoints(){
         return points;
     }
-    public boolean turn(){
-        //tbd
-        return false;
+    // check players turn
+    public boolean getTurn(){
+        return turn;
     }
+    // change players turn
+    public void setTurn(){
+        turn = !turn;
+    }
+    // override for testing 
     @Override
 	public boolean equals(Object x){
             if(!(x instanceof Player)){ return false; }
