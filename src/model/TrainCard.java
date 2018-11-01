@@ -27,4 +27,8 @@ public class TrainCard{
 		{ return true; }
 		return false;
 	}
+	@Override
+		public String toString(){
+		return this.type + " " + this.color + "\n";
+	}
 }
