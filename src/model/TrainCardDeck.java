@@ -47,28 +47,34 @@ public class TrainCardDeck {
 			i++;
 		}
 		i = 0;
-		int j = 0;
+		int j = 1;
 		// Creates all cards and add them to the deck end of the deck
 
-		while (j < 8) {
+		while (j < 9) {
 			while (i < 12) {
 				trainDeck.add(new TrainCard(j));
 				i++;
 			}
+			i = 0;
 			j++;
 		}
 		// Shuffle Cards
 		Collections.shuffle(trainDeck);
 		// 5 cards to the table
+
 		do {
+			int k = 0;
+			while (k < 5) {
+				TrainCard temp = trainDeck.get(k);
+				trainDeck.remove(k);
+				tableCards.add(temp);
+				k++;
+			}
+
 			if(this.checkTable())
 				this.discardToDeck();
-
-			for (int k = 0; k < 5; k++) {
-
-				tableCards.add(trainDeck.pop());
-			}
 		}while(this.checkTable());
+
 	}
 
 	/*
@@ -137,7 +143,7 @@ public class TrainCardDeck {
 
 				for (int it = 0; it < 5; it++) {
 
-					if(trainDeck.isEmpty())
+					if (trainDeck.isEmpty())
 						this.discardToDeck();
 
 					tableCards.add(trainDeck.pop());
@@ -158,7 +164,7 @@ public class TrainCardDeck {
 		/*
 		 * Add cards to discard pile
 		*/
-		public void addToDiscard (ArrayList < TrainCard > discard) {
+		public void addToDiscard (ArrayList <TrainCard> discard) {
 			for (int i = 0; i < discard.size(); i++) {
 				trainDiscard.add(discard.get(i));
 			}
@@ -178,10 +184,12 @@ public class TrainCardDeck {
 		 */
 		private boolean checkTable(){
 			int locoOnTable = 0;
-			for (int i = 0; i < 5; i++) {
+			int i = 0;
+			while(i < 5) {
 				if (tableCards.get(i).equals(locomotive)) {
 					locoOnTable++;
 				}
+				i++;
 			}
 			if(locoOnTable > 2)
 				return true;

@@ -74,5 +74,9 @@ public class DestinationTicketSet{
     public DestinationCard getDestCard(){
         return Set.peek();
     }
+    public void returnTo(DestinationCard toBottom){
+        // note add appends the element at the end of the list/deck
+        Set.add(toBottom);
+    }
 
 }
