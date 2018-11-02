@@ -3,8 +3,8 @@
  * Board.java
  * Version 0.2.0    : Game Turn
  * Programmer       : Daniel Salazar
- * Due Date         : 11/07/18
- * Last Modified    : 10/26/18 01:20
+ * Due Date         : 11/05/18
+ * Last Modified    : 11/02/18 08:42
  *
  * This class represents the game board. It will get cards and pieces placed on it. Players will interact with those
  * cards and pieces placed on the board.
@@ -21,12 +21,13 @@ public class Board {
     TrainCardDeck trainDeck;
     DestinationTicketSet destDeck;
     TrainPieces trainPieces;
-    String routes[] = new String[] {"Vancouver","Calgary","Winnipeg","Seattle","Portland","Helena","Salt Lake City",
-            "Denver","San Francisco","Las Vegas","Santa Fe","Los Angeles","Phoenix","El Paso","Oklahoma City",
-            "Duluth","Omaha","Kansas City","Dallas","Houston","Chicago","Saint Louis","Little Rock","New Orleans",
-            "Nashville","Toronto","Pittsburgh","Atlanta","Miami","Charleston","Washington","Raleigh","New York",
-            "Boston","Montreal","Sault Ste. Marie"};
+    String routes[] = new String[] {"Vancouver", "Calgary", "Seattle", "Winnipeg", "Helena", "Portland",
+            "Sault Ste. Marie", "Duluth", "Omaha", "San Francisco", "Salt Lake City", "Montreal", "Toronto", "Chicago",
+        "Kansas City", "Oklahoma City", "Santa Fe", "Los Angeles", "Denver", "New York", "Pittsburgh", "Saint Louis",
+            "Little Rock", "Dallas", "El Paso", "Las Vegas", "Boston", "Phoenix", "Washington", "Raleigh", "Nashville",
+        "New Orleans", "Houston", "Charleston", "Atlanta", "Miami"};
 
+    List<Route> routes;
     /* *
      * Class Constructor
      */
@@ -56,32 +57,15 @@ public class Board {
         return null;
     }
     // Claim a route
-    public Boolean claimRoute(Board board) {
+    /* TODO: Finish the Design and Generate an Algorithm
+    * Route A to Route B will have some number of trains connecting them
+    * In order to claim a route, the player is required to have the exact number of cards matching the color
+    * and they also have to posses the exact number of Train Pieces.
+    * The route claimed does not have to be connected to any other route.
+    * */
+    public int claimRoute() {
         // TODO: Claim a route from the Board's route list
         return null;
-    }
-    // Get 3 Destination Ticket Cards
-    public List<TrainCard> get3DestCards() {
-        // TODO: Get 3 Destination Cards
-        return null;
-    }
-
-    /* *
-     * This method allows the Player to draw a card during their turn
-     * <p>
-     * @return The TrainCard located at the top of the deck.
-     */
-    private TrainCard drawTrainCard() {
-        return this.trainDeck.Draw(true);
-    }
-
-    /* *
-     * This method allows the Player to draw a card during their turn
-     * <p>
-     * @return The TrainCard chose by Player
-     */
-    private TrainCard faceUpDraw(int at) {
-        return this.trainDeck.fromTable(at);
     }
 
 }
