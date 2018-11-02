@@ -1,10 +1,10 @@
 
 /*
  * TrainPiece.java
- * Version 0.1.4    : Setup
+ * Version 0.2.0    : Game Turn
  * Programmer       : Daniel Salazar
  * Due Date         : 10/24/18
- * Last Modified    : 10/21/18 10:25
+ * Last Modified    : 11/01/18 15:30
  *
  * This class represents one of 240 total Train Pieces divided into five colors.
  * Colors: Blue, Red, Green, Yellow, and Black.
