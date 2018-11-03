@@ -36,6 +36,7 @@ public class Ticket2Ride {
 
         // MARK - Variables
         Board usaBoard = new Board();
+        usaBoard.print();
         Player player1 = new Player("Player 1", TrainPieces.COLOR.RED),
                 player2 = new Player("Player 2", TrainPieces.COLOR.YELLOW),
                 player3 = new Player("Player 3", TrainPieces.COLOR.BLUE);
@@ -59,7 +60,7 @@ public class Ticket2Ride {
      */
     public void takeTurn(Board board, int action) {
         if(action == 1)
-            board.claimRoute(board);
+            board.claimRoute();
         else
             drawAction(board, action);
     }
@@ -73,13 +74,17 @@ public class Ticket2Ride {
      * @return
      */
     private List<TrainCard> drawAction(Board board, int action) {
+        /*
         if(action < 1) {
+
             List<TrainCard> trainCards = board.get2TrainCards();
             return trainCards;
         } else {
             List<TrainCard> destCards = board.get3DestCards();
             return destCards;
         }
+        */
+        return null;
     }
 
     /* End Edit - DS */
