@@ -3,7 +3,7 @@
  * Version 0.1.5    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 11/7/18
- * Last Modified    : 10/31/18 12:52
+ * Last Modified    : 11/2/18 7:52
  *
  * This class represents a player.
  *  
@@ -35,9 +35,9 @@ public class Player {
         pieces = new TrainPieces().getPieces(c); 
         
         //initialize ArrayList of four traincar cards        
-//        carCards = new ArrayList<>();
-//        TrainCardDeck deck = new TrainCardDeck();
-//        carCards = deck.toPlayer();
+        carCards = new ArrayList<>();
+        TrainCardDeck deck = new TrainCardDeck();
+        carCards = deck.toPlayer();
 
         //initialize ArrayList of three destination cards    
         destCards = new ArrayList<>();
@@ -58,13 +58,13 @@ public class Player {
         return pieces.get(p);
     }
     
-    // insert a TrainPiece into a newly claimed route
+    // insert a TrainPiece into claimed route
     public boolean insertTrainPiece(DestinationCard dc){
         // if the DestinationCard route(s) are claimed or we don't have enough train pieces then return false
         if(board.claimRoute(dc.getRouteA()) && board.claimRoute(dc.getRouteB()) || pieces.size() < dc.getPts()){
             return false; }
-        else we are going to claim the route and throw out an equivlent amount of train pieces
-         to the routes path (aka pts)
+        // else we are going to claim the route and throw out an equivlent amount of train pieces
+        // to the routes path (aka pts)
         else{
           if(board.claimRoute(dc.getRouteA()){
                 
@@ -76,17 +76,15 @@ public class Player {
             }    
         }
         return true;
-    }
+    }   
     //retrives a train piece of the players list of train pieces
     public void removeTrainPiece(int p){
         pieces.remove(p);
     }
-    
     //retrieves a train car from the player's list of train cards 
     public TrainCard getTrainCar(int c){
         return carCards.get(c);
     }
-    
     // adds a train car card to player's list of train cars
     public boolean insertTrainCar(TrainCard tc){
         return carCards.add(tc); 
@@ -94,11 +92,10 @@ public class Player {
     // removes a train car card from players list of train cars
     public boolean removeTrainCar(int tc){
         TrainCard temp = carCards.get(tc);
-        //carCards.remove(tc);   edited 2:06 10/31
         return carCards.remove(temp);
     }
     
-    // returns the players current destinatoin cards
+    // returns the players current destination cards
     public ArrayList<DestinationCard> getDestTixCard(){
         return this.destCards;
     }
@@ -110,11 +107,10 @@ public class Player {
     
     // removes a destinatoin card from the plaers list of destination cards
     public boolean removeDestTixCard(int cNum){
-       // DestinationCard temp = destCards.get(cNum);
-        destCards.remove(cNum);
-       // return temp.returnToBottomDeck(temp);
-        return true;
+        DestinationCard temp = destCards.get(cNum);
+        return temp.returnTo(temp);
     }
+    
     //add player points
     public boolean addPoints(int a){
         int oldpoints = points;
