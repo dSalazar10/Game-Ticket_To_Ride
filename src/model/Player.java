@@ -58,20 +58,24 @@ public class Player {
         return pieces.get(p);
     }
     
-    //public boolean insertTrainPiece(TrainPiece tp){
-    public boolean insertTrainPiece(Board r){
-//        int routeLength  = r.routes.length;
-//        String route[] = r.routes;
-//        int i = 0;
-//        if (r.claimRoute){
-//            while(i < routeLength){
-//                TrainPiece tp = pieces.get(i);
-//                pieces.remove(i);
-//                //r.routes.add()......
-//                //tbd
-//            }
-//        }
-        return false;
+    // insert a TrainPiece into a newly claimed route
+    public boolean insertTrainPiece(DestinationCard dc){
+        // if the DestinationCard route(s) are claimed or we don't have enough train pieces then return false
+        if(board.claimRoute(dc.getRouteA()) && board.claimRoute(dc.getRouteB()) || pieces.size() < dc.getPts()){
+            return false; }
+        else we are going to claim the route and throw out an equivlent amount of train pieces
+         to the routes path (aka pts)
+        else{
+          if(board.claimRoute(dc.getRouteA()){
+                
+        
+            board.claimRoute(dc.getRouteA());
+            int i = 0;
+            while(i < dc.getPts()){
+                pieces.remove(i);
+            }    
+        }
+        return true;
     }
     //retrives a train piece of the players list of train pieces
     public void removeTrainPiece(int p){
@@ -88,8 +92,10 @@ public class Player {
         return carCards.add(tc); 
     }
     // removes a train car card from players list of train cars
-    public void removeTrainCar(int tc){
-        carCards.remove(tc);   
+    public boolean removeTrainCar(int tc){
+        TrainCard temp = carCards.get(tc);
+        //carCards.remove(tc);   edited 2:06 10/31
+        return carCards.remove(temp);
     }
     
     // returns the players current destinatoin cards
@@ -106,7 +112,7 @@ public class Player {
     public boolean removeDestTixCard(int cNum){
        // DestinationCard temp = destCards.get(cNum);
         destCards.remove(cNum);
-       // return temp.retunTo(temp);
+       // return temp.returnToBottomDeck(temp);
         return true;
     }
     //add player points
