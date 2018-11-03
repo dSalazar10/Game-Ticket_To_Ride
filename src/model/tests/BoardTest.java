@@ -20,7 +20,6 @@ public class BoardTest {
     @Test
     public void testBoard() {
         Board b = new Board();
-        assertEquals(null, b.get3DestCards());
         //assertEquals(null, b.get2TrainCards());
     }
 }
