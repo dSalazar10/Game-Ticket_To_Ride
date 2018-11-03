@@ -204,6 +204,10 @@ public class TrainCardDeck {
 		public TrainCard getTopofDeck(){
 			return trainDeck.pop();
 		}
+		/*
+		 * Determines if this is a legal claim
+		 * takes a list of cards, a train card or color and the length of the route
+		 */
 		public boolean canClaim(ArrayList<TrainCard> claim,  Object routeColor, int len){
 		   TrainCard train;
 		    if(routeColor instanceof TrainColor ){
