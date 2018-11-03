@@ -51,8 +51,6 @@ public class Player {
     
     public boolean addBoard(Board b){
         board = b;
-        carCards = b.trainDeck.toPlayer();
-
         return board == b;
     }
    
