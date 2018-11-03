@@ -78,5 +78,11 @@ public class DestinationTicketSet{
         // note add appends the element at the end of the list/deck
         Set.add(toBottom);
     }
+    public boolean checkRoute(ArrayList<Route> routes, DestinationCard card){
+        if(true)
+            return true;
+        else
+            return false;
+    }
 
 }

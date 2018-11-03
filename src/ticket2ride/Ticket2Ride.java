@@ -77,7 +77,7 @@ public class Ticket2Ride {
             List<TrainCard> trainCards = board.get2TrainCards();
             return trainCards;
         } else {
-            List<TrainCard> destCards = board.get3DestCards();
+            List<TrainCard> destCards = board.get2TrainCards();
             return destCards;
         }
     }
