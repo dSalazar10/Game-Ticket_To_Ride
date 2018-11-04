@@ -85,17 +85,21 @@ public class TrainCardDeck {
 	 * a locomotive, the game will not go on until player chooses a non-locmotive card
 	 */
 	public ArrayList<TrainCard> Draw() {
-		boolean t = true;
+		// temp vars
+	    boolean t = true;
 		int x = 0;
 		TrainCard testCard;
 		ArrayList draw = new ArrayList<TrainCard>();
+
 		for (int i = 0; i < 2; i++) {
-			if (trainDeck.isEmpty()) {
+			// t = DeckorTable() a method which finds out if we want a card from deck or table
+		    if (trainDeck.isEmpty()) {
 				this.discardToDeck();
 			}
 			if (t)
 				draw.add(trainDeck.pop());
 			else {
+			    // x = posFromTable() a method which return the index of the card on the table for the player
 				if (i == 1) {
 					do {
 						testCard = this.peak(x);
@@ -200,4 +204,28 @@ public class TrainCardDeck {
 		public TrainCard getTopofDeck(){
 			return trainDeck.pop();
 		}
+		/*
+		 * Determines if this is a legal claim
+		 * takes a list of cards, a train card or color and the length of the route
+		 */
+		public boolean canClaim(ArrayList<TrainCard> claim,  Object routeColor, int len){
+		   TrainCard train;
+		    if(routeColor instanceof TrainColor ){
+		        TrainColor color = (TrainColor) routeColor;
+		        train = new TrainCard(color.ordinal());
+           }else if(!(routeColor instanceof TrainCard))
+               return false;
+		   else
+		       train = (TrainCard) routeColor;
+		    int i = 0;
+		    if(claim.size() != len)
+		        return false;
+		    while(i < claim.size()){
+		        if(!train.equals(claim.get(i)) && !locomotive.equals(claim.get(i)))
+		            return false;
+		        i++;
+            }
+            return true;
+        }
+
 	}
