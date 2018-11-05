@@ -20,9 +20,9 @@ import java.util.List;
 public class Board {
 
     // Variables
-    TrainCardDeck trainDeck;
-    DestinationTicketSet destDeck;
-    TrainPieces trainPieces;
+    public TrainCardDeck trainDeck;
+    public DestinationTicketSet destDeck;
+    public TrainPieces trainPieces;
 
 
     Route board;
@@ -246,7 +246,7 @@ public class Board {
         // List of Children Routes
         ArrayList<Route> c = a.getChildren();
         // List of Path costs for each Child Route
-        ArrayList<RouteCost> cost;
+        ArrayList<RouteCost> cost = new ArrayList<RouteCost>();
         // If no children connected, exit
         if(c.isEmpty())
             return 0;

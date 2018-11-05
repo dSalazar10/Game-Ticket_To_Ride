@@ -35,7 +35,7 @@ public class Ticket2Ride {
         boolean claimroute = false;
         boolean drawDestCards = false;
         boolean playable = true;
-        int player = 0;
+        int player = 1;
         ArrayList<TrainCard> drawingCards;
         ArrayList<DestinationCard> destCards;
         /* Edit - NS */
@@ -44,62 +44,112 @@ public class Ticket2Ride {
         Board usaBoard = new Board();
         // usaBoard.print();
         Player[] p = new Player[3];
-                p[0] = new Player("Player 1", TrainPieces.COLOR.RED);
-                p[1] = new Player("Player 2", TrainPieces.COLOR.YELLOW);
-                p[2] = new Player("Player 3", TrainPieces.COLOR.BLUE);
+        p[0] = new Player("Player 1", TrainPieces.COLOR.RED);
+        p[1] = new Player("Player 2", TrainPieces.COLOR.YELLOW);
+        p[2] = new Player("Player 3", TrainPieces.COLOR.BLUE);
         p[0].addBoard(usaBoard);
         p[1].addBoard(usaBoard);
         p[2].addBoard(usaBoard);
         int iter = 0;
+        int turn = 0;
+        /*
+         * Will loop and take one players turn at a time, then checks if a player has 3 or less
+         * Train Pieces if so each player will take one more turn else keep taking turns
+         * Without user input (User input is marked) it loops forever and Draws 2 cards from TrainCarDeck
+         * until TrainCardDeck is empty then just loops.
+         */
         do {
             player = 1;
             /*
             Start SudoTurn
              */
-            while(player < 4){
-            System.out.println("Player " + player + " Draw Train Cards");
-            drawingCards = usaBoard.trainDeck.Draw();
-            while (iter < drawingCards.size()) {
-                p[player - 1].insertTrainCar(drawingCards.get(iter));
-                iter++;
-            }
-            iter = 0;
-
-            System.out.println("PLayer " + player + " Do you want to Draw Destination Cards?");
-            // userInput
-            if (drawDestCards) {
-                destCards = usaBoard.destDeck.Draw();
-                while (iter < destCards.size()) {
-                    drawDestCards = false;
-                    System.out.println("Player" + player + " Do you want to keep this card?");
-                    // userInput
-                    if (drawDestCards)
-                        p[player - 1].insertDestTixCard(destCards.get(iter));
-                    else
-                        p[player - 1].removeDestTixCard(p[player - 1].getSizeofDest() - 1);
+            while (player < 4) {
+                if(turn == player)
+                System.out.println("Player " + player + " Draw Train Cards");
+                drawingCards = usaBoard.trainDeck.Draw();
+                while (iter < drawingCards.size()) {
+                    p[player - 1].insertTrainCar(drawingCards.get(iter));
                     iter++;
                 }
                 iter = 0;
+
+                System.out.println("PLayer " + player + " Do you want to Draw Destination Cards?");
+                // userInput
+                if (drawDestCards) {
+                    destCards = usaBoard.destDeck.Draw();
+                    while (iter < destCards.size()) {
+                        drawDestCards = false;
+                        System.out.println("Player" + player + " Do you want to keep this card?");
+                        // userInput
+                        if (drawDestCards)
+                            p[player - 1].insertDestTixCard(destCards.get(iter));
+                        else
+                            p[player - 1].removeDestTixCard(p[player - 1].getSizeofDest() - 1);
+                        iter++;
+                    }
+                    iter = 0;
+                }
+                System.out.println("Player " + player + " Do you want to claim a route?");
+                // userInput
+                if (claimroute == true) {
+                    claimRoute(p, player - 1);
+                }
+                if (p[(player - 1)].getPeicesLeft() < 3){
+                    playable = false;
+                    turn = player;
             }
-            System.out.println("Player " + player + " Do you want to claim a route?");
-            // userInput
-            if (claimroute == true) {
-                claimRoute(p, player-1);
-            }
-            System.out.println("Player = " + p[player-1].getPeicesLeft());
-            if (p[(player - 1)].getPeicesLeft() < 3)
-                playable = false;
-            player++;
+                player++;
             /*
             End of Sudo Turn
              */
-        }
-        }while(playable);
+            }
+        } while (playable);
         /* End Edit - NS */
-    }
-    public static void claimRoute(Player[] p, int turn){
+        player = 1;
+            /*
+            Start of Final SudoTurn
+             */
+        while (player < 4) {
+            if(turn == player) {
 
-    }
+                System.out.println("Player " + player + " Draw Train Cards");
+                drawingCards = usaBoard.trainDeck.Draw();
+                while (iter < drawingCards.size()) {
+                    p[player - 1].insertTrainCar(drawingCards.get(iter));
+                    iter++;
+                }
+                iter = 0;
+                System.out.println("PLayer " + player + " Do you want to Draw Destination Cards?");
+                // userInput
+                if (drawDestCards == true) {
+                    destCards = usaBoard.destDeck.Draw();
+                    while (iter < destCards.size()) {
+                        drawDestCards = false;
+                        System.out.println("Player" + player + " Do you want to keep this card?");
+                        // userInput
 
+                        if (drawDestCards)
+                            p[player - 1].insertDestTixCard(destCards.get(iter));
+                        else
+                            p[player - 1].removeDestTixCard(p[player - 1].getSizeofDest() - 1);
+                        iter++;
+                    }
+                    iter = 0;
+                }
+                System.out.println("Player " + player + " Do you want to claim a route?");
+                // userInput
+                if (claimroute == true) {
+                    claimRoute(p, player - 1);
+                }
+            }
+            player++;
+            /*
+            End of Final Sudo Turn
+             */
+        }
+    }
+        public static void claimRoute (Player[]p,int turn){
+
+        }
 
 }
