@@ -55,8 +55,8 @@ public class DestinationTicketSet{
     /*
      * Returns a list of 3 cards to the user
      */
-    public ArrayList<DestinationCard> Draw(ArrayList<DestinationCard> draw){
-        draw = new ArrayList<DestinationCard>();
+    public ArrayList<DestinationCard> Draw(){
+        ArrayList<DestinationCard> draw = new ArrayList<DestinationCard>();
         if(Set.isEmpty()){
             return draw;
         }
@@ -67,14 +67,18 @@ public class DestinationTicketSet{
         }
         return draw;
     }
-    public void RemoveCard(){
-
+    public ArrayList<DestinationCard> toPlayer(){
+        ArrayList<DestinationCard> forPlayer = new ArrayList<DestinationCard>();
+        for(int i = 0; i < 5; i++){
+            forPlayer.add(Set.pop());
+        }
+        return forPlayer;
     }
 
     public DestinationCard getDestCard(){
         return Set.peek();
     }
-    public void returnTo(DestinationCard toBottom){
+    public void retunTo(DestinationCard toBottom){
         // note add appends the element at the end of the list/deck
         Set.add(toBottom);
     }
