@@ -16,6 +16,7 @@ package ticket2ride;
 // Include all the classes from the model package
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* End Edit - DS */
@@ -31,61 +32,74 @@ public class Ticket2Ride {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        /* Edit - DS */
+        boolean claimroute = false;
+        boolean drawDestCards = false;
+        boolean playable = true;
+        int player = 0;
+        ArrayList<TrainCard> drawingCards;
+        ArrayList<DestinationCard> destCards;
+        /* Edit - NS */
 
         // MARK - Variables
         Board usaBoard = new Board();
-        usaBoard.print();
-        Player player1 = new Player("Player 1", TrainPieces.COLOR.RED),
-                player2 = new Player("Player 2", TrainPieces.COLOR.YELLOW),
-                player3 = new Player("Player 3", TrainPieces.COLOR.BLUE);
-        player1.addBoard(usaBoard);
-        player2.addBoard(usaBoard);
-        player3.addBoard(usaBoard);
+        // usaBoard.print();
+        Player[] p = new Player[3];
+                p[0] = new Player("Player 1", TrainPieces.COLOR.RED);
+                p[1] = new Player("Player 2", TrainPieces.COLOR.YELLOW);
+                p[2] = new Player("Player 3", TrainPieces.COLOR.BLUE);
+        p[0].addBoard(usaBoard);
+        p[1].addBoard(usaBoard);
+        p[2].addBoard(usaBoard);
+        int iter = 0;
+        do {
+            player = 1;
+            /*
+            Start SudoTurn
+             */
+            while(player < 4){
+            System.out.println("Player " + player + " Draw Train Cards");
+            drawingCards = usaBoard.trainDeck.Draw();
+            while (iter < drawingCards.size()) {
+                p[player - 1].insertTrainCar(drawingCards.get(iter));
+                iter++;
+            }
+            iter = 0;
 
-        /* End Edit - DS */
-    }
-
-    /* Edit - DS */
-
-    /*
-     *  If a player claims a route and their train pieces pile is less than 3 pieces, each player gets one last turn.
-     *  Once the last turns are over, the game is over.
-     *  @param    action
-     *           The action chosen by the player:
-     *           1. Draw Action (Get 2 Train Car Cards)
-     *           2. Claim a route
-     *           3. Draw Action (Get 3 Destination Ticket Cards)
-     */
-    public void takeTurn(Board board, int action) {
-        if(action == 1)
-            board.claimRoute();
-        else
-            drawAction(board, action);
-    }
-
-    /*
-     * @param    action
-     *           The action chosen by the player:
-     *           1. Get 2 Train Car Cards
-     *           2. (Claim a route)
-     *           3. Get 3 Destination Ticket Cards
-     * @return
-     */
-    private List<TrainCard> drawAction(Board board, int action) {
-        /*
-        if(action < 1) {
-
-            List<TrainCard> trainCards = board.get2TrainCards();
-            return trainCards;
-        } else {
-            List<TrainCard> destCards = board.get3DestCards();
-            return destCards;
+            System.out.println("PLayer " + player + " Do you want to Draw Destination Cards?");
+            // userInput
+            if (drawDestCards) {
+                destCards = usaBoard.destDeck.Draw();
+                while (iter < destCards.size()) {
+                    drawDestCards = false;
+                    System.out.println("Player" + player + " Do you want to keep this card?");
+                    // userInput
+                    if (drawDestCards)
+                        p[player - 1].insertDestTixCard(destCards.get(iter));
+                    else
+                        p[player - 1].removeDestTixCard(p[player - 1].getSizeofDest() - 1);
+                    iter++;
+                }
+                iter = 0;
+            }
+            System.out.println("Player " + player + " Do you want to claim a route?");
+            // userInput
+            if (claimroute == true) {
+                claimRoute(p, player-1);
+            }
+            System.out.println("Player = " + p[player-1].getPeicesLeft());
+            if (p[(player - 1)].getPeicesLeft() < 3)
+                playable = false;
+            player++;
+            /*
+            End of Sudo Turn
+             */
         }
-        */
-        return null;
+        }while(playable);
+        /* End Edit - NS */
+    }
+    public static void claimRoute(Player[] p, int turn){
+
     }
 
-    /* End Edit - DS */
+
 }
