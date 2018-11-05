@@ -25,6 +25,7 @@ import java.util.List;
  *
  * @author PC1
  * @author dsalazar10
+ * @author Nasario S
  */
 public class Ticket2Ride {
 

@@ -20,9 +20,9 @@ import java.util.List;
 public class Board {
 
     // Variables
-    public TrainCardDeck trainDeck;
-    public DestinationTicketSet destDeck;
-    public TrainPieces trainPieces;
+     TrainCardDeck trainDeck;
+     DestinationTicketSet destDeck;
+     TrainPieces trainPieces;
 
 
     Route board;
