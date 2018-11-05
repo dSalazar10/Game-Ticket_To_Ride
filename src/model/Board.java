@@ -13,6 +13,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
@@ -119,6 +121,91 @@ public class Board {
             node.setchildren(children[i]);
         }
 
+        // TODO: initilize the Board's RouteCosts
+        // ArrayList<ArrayList<RouteCost>> counts = new ArrayList<ArrayList<RouteCost>>(36);
+        // counts.add(new ArrayList<RouteCost>());
+
+        int[][][] trains;
+        trains = new int[][][]{
+                // root
+                {{0}},
+                // Vancouver = {Calgary (3 Gray), Seattle (1 Gray / 1 Gray)}
+                {{3}, {1, 1}},
+                // Calgary = {Winnipeg (6 White), Helena (4 Gray)}
+                {{6}, {4}},
+                // Seattle = {Calgary (4 Gray), Helena  (6 Yellow), Portland (1 Gray / 1 Gray)}
+                {{4}, {6}, {1, 1}},
+                // Winnipeg = {Sault St. Marie (6 Gray), Duluth (4 Black)}
+                {{6}, {4}},
+                // Helena = {Winnipeg (4 Blue), Duluth (6 Orange), Omaha (5 Red), Denver (4 Green), Salt Lake City (3 Pink)}
+                {{4}, {6}, {5}, {4}, {3}},
+                // Portland = {San Francisco (5 Green / 5 Pink), Salt Lake City (6 Blue)}
+                {{5, 5}, {6}},
+                // Sault St. Marie = {Montreal (5 Black), Toronto (2 Gray)}
+                {{5}, {2}},
+                // Duluth = {Sault St. Marie (3 Gray), Toronto (6 Pink), Chicago (3 Red)}
+                {{3}, {6}, {3}},
+                // Omaha = {Duluth (2 Gray / 2 Gray), Chicago (4 Blue), Kansas City (1 Gray / 1 Gray)}
+                {{2, 2}, {4}, {1, 1}},
+                // San Francisco = { (5 Orange / 5 White), Los Angeles (3 Yellow / 3 Pink)}
+                {{5, 5}, {3, 3}},
+                // Salt Lake City = {Denver (3 Red / 3 Yellow), Las Vegas (3 Orange)}
+                {{3, 3}, {3}},
+                // Montreal = {Boston (2 Gray / 2 Gray), New York (3 Blue)}
+                {{2, 2}, {3}},
+                // Toronto = {Pittsburgh (2 Gray)}
+                {{2}},
+                // Chicago = {Toronto (4 White), Pittsburgh (3 Orange / 3 Black), Saint Louis  (2 Green / 2 White)}
+                {{4}, {3, 3}, {2, 2}},
+                // Kansas City = {Saint Louis (2 Blue / 2 Pink)}
+                {{2, 2}},
+                // Oklahoma City = {Kansas City (2 Gray / 2 Gray), Little Rock (2 Gray), Dallas (2 Gray)}
+                {{2, 2}, {2}, {2}},
+                // Sante Fe = {Oklahoma City (3 Blue), El Paso (2 Gray)}
+                {{3}, {2}},
+                // Los Angeles = {Las Vegas (2 Gray), Phoenix (3 Gray), El Paso (6 Black)}
+                {{2}, {3}, {6}},
+                // Denver = {Omaha (4 Pink), Kansas City (4 Black / 4 Orange), Oklahoma City (4 Red), Sante Fe (2 Gray)}
+                {{4}, {4, 4}, {4}, {2}},
+                // New York = {Boston (2 Yellow / 2 Red), Washington (2 Orange / 2 Black)}
+                {{2, 2}, {2, 2}},
+                // Pittsburgh = {New York (2 White / 2 Green), Washington (2 Gray), Raleigh (2 Gray)}
+                {{2, 2}, {2}, {2}},
+                // Saint Louis = {Pittsburgh (5 Green), Nashville (2 Gray)}
+                {{5}, {2}},
+                // Little Rock = {Nashville (3 White), New Orleans (3 Green)}
+                {{3}, {3}},
+                // Dallas = {Houston (1 Gray / 1 Gray)}
+                {{1, 1}},
+                // El Paso = {Dallas (4 Red), Houston (6 Green)}
+                {{4}, {6}},
+                // Las Vegas = {empty}
+                {},
+                // Boston = {empty}
+                {},
+                // Phoenix = {Sante Fe (3 Gray), El Paso (3 Gray)}
+                {{3}, {3}},
+                // Washington = {empty}
+                {},
+                // Raleigh = {Charleston (2 Gray)}
+                {{2}},
+                // Nashville = {Atlanta (1 Gray)}
+                {{1}},
+                // New Orleans = {Atlanta (4 Yellow / 4 Orange), Miami (6 Red)}
+                {{4, 4}, {6}},
+                // Houston = {New Orleans (2 Gray)}
+                {{2}},
+                // Charleston = {Miami (4 Pink)}
+                {{4}},
+                // Atlanta = {Charleston (2 Gray), Miami (5 Blue)}
+                {{2}, {5}},
+                // Miami = {empty}
+                {}
+        };
+
+
+
+
     }
 
 
@@ -142,15 +229,57 @@ public class Board {
         return null;
     }
     // Claim a route
-    /* TODO: Finish the Design and Generate an Algorithm
-    * Route A to Route B will have some number of trains connecting them
-    * In order to claim a route, the player is required to have the exact number of cards matching the color
-    * and they also have to posses the exact number of Train Pieces.
-    * The route claimed does not have to be connected to any other route.
+    /*
+    * Parameters:
+    * id is an array of two ints that represent the Route's id field
+    * cards is an array of cards that the Player is using to claim the Route
+    * tp is a list of train pieces that the player puts on the board
+    * Output:
+    * Returns the awarded points (0, 1, 2, 4, 7, 10, 15)
     * */
-    public int claimRoute() {
-        // TODO: Claim a route from the Board's route list
-        return -1;
+    public int claimRoute(int id[], ArrayList<TrainCard> cards, List<TrainPiece> tp) {
+        // If illegal Route IDs, exit
+        if((id[0] < 1 || id[0] > 36) || (id[1] < 1 || id[1] > 36))
+            return 0;
+        // RouteA and RouteB
+        Route a = board.getNode(id[0]), b = null;
+        // List of Children Routes
+        ArrayList<Route> c = a.getChildren();
+        // List of Path costs for each Child Route
+        ArrayList<RouteCost> cost;
+        // If no children connected, exit
+        if(c.isEmpty())
+            return 0;
+        // Itterate through the children nodes
+        for(int i = 0; i < c.size(); b = c.get(i++)) {
+            // If the matching child node is found
+            if(b.getId() == id[1]) {
+                // Get the cost to claim Route. If it is empty, exit
+                if((cost = a.getCost(i)).isEmpty())
+                    return 0;
+            }
+        }
+        // Get the main color of the cards
+        TrainColor color = TrainColor.RAINBOW;
+        for(TrainCard card : cards) {
+            if(card.getColor() != TrainColor.RAINBOW) {
+                color = card.getColor();
+                break;
+            }
+        }
+        // If there are two paths, pick the one that matches the color
+        RouteCost path = cost.get(0);
+        if(cost.size() > 1) {
+            path = (cost.get(0).getColor().equals(color)) ? (cost.get(0)) : (cost.get(1));
+        }
+        // Check if the claim is legal
+        if(trainDeck.canClaim(cards, path.getColor(), path.getCount())) {
+            // Put the Train Pieces on the board
+            path.setTrainPieces(tp);
+            // return the points awarded
+            return path.getPoints();
+        }
+        return 0;
     }
 
     public void print() {

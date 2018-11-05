@@ -20,21 +20,26 @@ public class Route {
             "Kansas City", "Oklahoma City", "Santa Fe", "Los Angeles", "Denver", "New York", "Pittsburgh", "Saint Louis",
             "Little Rock", "Dallas", "El Paso", "Las Vegas", "Boston", "Phoenix", "Washington", "Raleigh", "Nashville",
             "New Orleans", "Houston", "Charleston", "Atlanta", "Miami"};
+
     /*
     * id is the element's position in the String array above
     * n is the max number of children in a Route node
     * city is the node's label
     * children is a list of the connecting Route nodes
     * */
-    int id, n;
-    String city;
+    private int id, n;
+    private final ArrayList<ArrayList<RouteCost>> costs;
     private final ArrayList<Route> children;
 
     public Route(int id, int n) {
         this.id = id;
         this.n = n;
-        this.city = Route.routes[id];
+        this.costs = new ArrayList<>(n);
         this.children = new ArrayList<>(n);
+    }
+
+    public int getId() {
+        return id;
     }
 
     // If there is enough space, add the given Route to the list of children
@@ -54,6 +59,16 @@ public class Route {
             // adding each node
             addChild(node);
         }
+    }
+
+    private void setCosts(ArrayList<ArrayList<RouteCost>> costs) {
+        if(costs.size() < n) for(ArrayList<RouteCost> cost : costs) {
+            this.costs.add(cost);
+        }
+    }
+
+    public ArrayList<RouteCost> getCost(int index) {
+        return costs.get(index);
     }
 
     // Given a list of ids, add some child nodes to this Route
@@ -106,7 +121,7 @@ public class Route {
             System.out.print("   ");
         }
 
-        System.out.println(node.city);
+        System.out.println(Route.routes[node.id]);
 
         for (Route child : node.getChildren()) {
             printUtil(child, depth + 1);
