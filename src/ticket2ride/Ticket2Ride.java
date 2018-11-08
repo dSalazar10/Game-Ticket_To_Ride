@@ -16,8 +16,6 @@ package ticket2ride;
 // Include all the classes from the model package
 import model.*;
 
-import java.util.List;
-
 /* End Edit - DS */
 
 /**
@@ -31,61 +29,7 @@ public class Ticket2Ride {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        /* Edit - DS */
-
-        // MARK - Variables
-        Board usaBoard = new Board();
-        usaBoard.print();
-        Player player1 = new Player("Player 1", TrainPieces.COLOR.RED),
-                player2 = new Player("Player 2", TrainPieces.COLOR.YELLOW),
-                player3 = new Player("Player 3", TrainPieces.COLOR.BLUE);
-        player1.addBoard(usaBoard);
-        player2.addBoard(usaBoard);
-        player3.addBoard(usaBoard);
-
-        /* End Edit - DS */
+        Board b = new Board();
+        b.print();
     }
-
-    /* Edit - DS */
-
-    /*
-     *  If a player claims a route and their train pieces pile is less than 3 pieces, each player gets one last turn.
-     *  Once the last turns are over, the game is over.
-     *  @param    action
-     *           The action chosen by the player:
-     *           1. Draw Action (Get 2 Train Car Cards)
-     *           2. Claim a route
-     *           3. Draw Action (Get 3 Destination Ticket Cards)
-     */
-    public void takeTurn(Board board, int action) {
-        if(action == 1)
-            board.claimRoute();
-        else
-            drawAction(board, action);
-    }
-
-    /*
-     * @param    action
-     *           The action chosen by the player:
-     *           1. Get 2 Train Car Cards
-     *           2. (Claim a route)
-     *           3. Get 3 Destination Ticket Cards
-     * @return
-     */
-    private List<TrainCard> drawAction(Board board, int action) {
-        /*
-        if(action < 1) {
-
-            List<TrainCard> trainCards = board.get2TrainCards();
-            return trainCards;
-        } else {
-            List<TrainCard> destCards = board.get3DestCards();
-            return destCards;
-        }
-        */
-        return null;
-    }
-
-    /* End Edit - DS */
 }

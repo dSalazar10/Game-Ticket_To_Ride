@@ -45,4 +45,13 @@ public class RouteCost {
             default: return 0;
         }
     }
+
+    @Override
+    public String toString() {
+        return "RouteCost{" +
+                "count=" + count +
+                ", color=" + color +
+                ", trainPieces=" + trainPieces +
+                '}';
+    }
 }
