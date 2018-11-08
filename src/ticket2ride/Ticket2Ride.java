@@ -66,7 +66,7 @@ public class Ticket2Ride {
              */
             while (player < 4) {
                 if(turn == player)
-                System.out.println("Player " + player + " Draw Train Cards");
+                    System.out.println("Player " + player + " Draw Train Cards");
                 drawingCards = usaBoard.trainDeck.Draw();
                 while (iter < drawingCards.size()) {
                     p[player - 1].insertTrainCar(drawingCards.get(iter));
@@ -98,7 +98,7 @@ public class Ticket2Ride {
                 if (p[(player - 1)].getPeicesLeft() < 3){
                     playable = false;
                     turn = player;
-            }
+                }
                 player++;
             /*
             End of Sudo Turn
@@ -149,8 +149,8 @@ public class Ticket2Ride {
              */
         }
     }
-        public static void claimRoute (Player[]p,int turn){
+    public static void claimRoute (Player[]p,int turn){
 
-        }
+    }
 
 }
