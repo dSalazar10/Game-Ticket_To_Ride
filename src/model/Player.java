@@ -40,9 +40,9 @@ public class Player {
 //        carCards = deck.toPlayer();
 
         //initialize ArrayList of three destination cards    
-        destCards = new ArrayList<>();
-        DestinationTicketSet dCard = new DestinationTicketSet();
-        destCards = dCard.Draw(destCards);
+        //destCards = new ArrayList<>();
+        //DestinationTicketSet dCard = new DestinationTicketSet();
+        //destCards = dCard.Draw(destCards);
                 
         //initialize points set to zero    
         points = 0;
@@ -51,6 +51,8 @@ public class Player {
     
     public boolean addBoard(Board b){
         board = b;
+        carCards =  b.trainDeck.toPlayer();
+        destCards = b.destDeck.toPlayer();
         return board == b;
     }
    
@@ -104,9 +106,9 @@ public class Player {
     
     // removes a destinatoin card from the plaers list of destination cards
     public boolean removeDestTixCard(int cNum){
-       // DestinationCard temp = destCards.get(cNum);
+       DestinationCard temp = destCards.get(cNum);
         destCards.remove(cNum);
-       // return temp.retunTo(temp);
+       board.destDeck.retunTo(temp);
         return true;
     }
     //add player points
@@ -140,4 +142,6 @@ public class Player {
             Player y = (Player)x;
             return this.name.equals(y.name) && this.pColor == y.pColor;
 	}
+	public int getPeicesLeft(){ return pieces.size(); }
+	public int getSizeofDest(){ return destCards.size(); }
 }

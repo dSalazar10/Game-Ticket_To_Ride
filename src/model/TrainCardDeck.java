@@ -93,7 +93,9 @@ public class TrainCardDeck {
 
 		for (int i = 0; i < 2; i++) {
 			// t = DeckorTable() a method which finds out if we want a card from deck or table
-		    if (trainDeck.isEmpty()) {
+		    if(trainDeck.isEmpty() && trainDiscard.isEmpty())
+		        return draw;
+            if (trainDeck.isEmpty()) {
 				this.discardToDeck();
 			}
 			if (t)
