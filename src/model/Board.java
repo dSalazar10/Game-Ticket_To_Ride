@@ -13,8 +13,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
@@ -24,6 +22,13 @@ public class Board {
     DestinationTicketSet destDeck;
     TrainPieces trainPieces;
 
+    public TrainCardDeck getTrainDeck() {
+        return trainDeck;
+    }
+
+    public DestinationTicketSet getDestDeck() {
+        return destDeck;
+    }
 
     Route board;
     /* *
@@ -33,7 +38,99 @@ public class Board {
         trainDeck = new TrainCardDeck();
         destDeck = new DestinationTicketSet();
         trainPieces = new TrainPieces();
+        board = new Route(0, 5);
+        Route.root = board;
+        setChildren();
+        //setRoutes();
+    }
 
+    private void setRoutes() {
+        int[][][] routes;
+        routes = new int[][][] {
+                // root
+                {{}},
+                // Vancouver = {Calgary (3 Gray), Seattle (1 Gray / 1 Gray)}
+                {{3}, {1, 1}},
+                // Calgary = {Winnipeg (6 White), Helena (4 Gray)}
+                {{6}, {4}},
+                // Seattle = {Calgary (4 Gray), Helena  (6 Yellow), Portland (1 Gray / 1 Gray)}
+                {{4}, {6}, {1, 1}},
+                // Winnipeg = {Sault St. Marie (6 Gray), Duluth (4 Black)}
+                {{6}, {4}},
+                // Helena = {Winnipeg (4 Blue), Duluth (6 Orange), Omaha (5 Red), Denver (4 Green), Salt Lake City (3 Pink)}
+                {{4}, {6}, {5}, {4}, {3}},
+                // Portland = {San Francisco (5 Green / 5 Pink), Salt Lake City (6 Blue)}
+                {{5, 5}, {6}},
+                // Sault St. Marie = {Montreal (5 Black), Toronto (2 Gray)}
+                {{5}, {2}},
+                // Duluth = {Sault St. Marie (3 Gray), Toronto (6 Pink), Chicago (3 Red)}
+                {{3}, {6}, {3}},
+                // Omaha = {Duluth (2 Gray / 2 Gray), Chicago (4 Blue), Kansas City (1 Gray / 1 Gray)}
+                {{2, 2}, {4}, {1, 1}},
+                // San Francisco = { (5 Orange / 5 White), Los Angeles (3 Yellow / 3 Pink)}
+                {{5, 5}, {3, 3}},
+                // Salt Lake City = {Denver (3 Red / 3 Yellow), Las Vegas (3 Orange)}
+                {{3, 3}, {3}},
+                // Montreal = {Boston (2 Gray / 2 Gray), New York (3 Blue)}
+                {{2, 2}, {3}},
+                // Toronto = {Pittsburgh (2 Gray)}
+                {{2}},
+                // Chicago = {Toronto (4 White), Pittsburgh (3 Orange / 3 Black), Saint Louis  (2 Green / 2 White)}
+                {{4}, {3, 3}, {2, 2}},
+                // Kansas City = {Saint Louis (2 Blue / 2 Pink)}
+                {{2, 2}},
+                // Oklahoma City = {Kansas City (2 Gray / 2 Gray), Little Rock (2 Gray), Dallas (2 Gray)}
+                {{2, 2}, {2}, {2}},
+                // Sante Fe = {Oklahoma City (3 Blue), El Paso (2 Gray)}
+                {{3}, {2}},
+                // Los Angeles = {Las Vegas (2 Gray), Phoenix (3 Gray), El Paso (6 Black)}
+                {{2}, {3}, {6}},
+                // Denver = {Omaha (4 Pink), Kansas City (4 Black / 4 Orange), Oklahoma City (4 Red), Sante Fe (2 Gray)}
+                {{4}, {4, 4}, {4}, {2}},
+                // New York = {Boston (2 Yellow / 2 Red), Washington (2 Orange / 2 Black)}
+                {{2, 2}, {2, 2}},
+                // Pittsburgh = {New York (2 White / 2 Green), Washington (2 Gray), Raleigh (2 Gray)}
+                {{2, 2}, {2}, {2}},
+                // Saint Louis = {Pittsburgh (5 Green), Nashville (2 Gray)}
+                {{5}, {2}},
+                // Little Rock = {Nashville (3 White), New Orleans (3 Green)}
+                {{3}, {3}},
+                // Dallas = {Houston (1 Gray / 1 Gray)}
+                {{1, 1}},
+                // El Paso = {Dallas (4 Red), Houston (6 Green)}
+                {{4}, {6}},
+                // Las Vegas = {empty}
+                {},
+                // Boston = {empty}
+                {},
+                // Phoenix = {Sante Fe (3 Gray), El Paso (3 Gray)}
+                {{3}, {3}},
+                // Washington = {empty}
+                {},
+                // Raleigh = {Charleston (2 Gray)}
+                {{2}},
+                // Nashville = {Atlanta (1 Gray)}
+                {{1}},
+                // New Orleans = {Atlanta (4 Yellow / 4 Orange), Miami (6 Red)}
+                {{4, 4}, {6}},
+                // Houston = {New Orleans (2 Gray)}
+                {{2}},
+                // Charleston = {Miami (4 Pink)}
+                {{4}},
+                // Atlanta = {Charleston (2 Gray), Miami (5 Blue)}
+                {{2}, {5}},
+                // Miami = {empty}
+                {}
+        };
+
+        Route node = board;
+        for(int i = 0; i < routes.length; ++i) {
+            node = board.getNode(i);
+            node.setCost(routes[i]);
+        }
+    }
+
+    private void setChildren() {
         // List of Routes
         int[][] children;
         children = new int[][]{
@@ -112,102 +209,27 @@ public class Board {
                 // 36 → NULL
                 {}
         };
-        // Initialize the board
-        board = new Route(0, 5);
+
         Route node = board;
         // Set all the nodes
         for(int i = 0; i < children.length; ++i) {
             node = board.getNode(i);
-            node.setchildren(children[i]);
+
+            // TODO: Debug
+            if(i == 2) {
+
+                System.out.print("Children{ ");
+                for(int c : children[i]) {
+                    System.out.print(c + " ");
+                }
+
+                System.out.println("}");
+            }
+            // TODO: End Debug
+
+            node.setChildren(children[i]);
         }
-
-        // TODO: initilize the Board's RouteCosts
-        // ArrayList<ArrayList<RouteCost>> counts = new ArrayList<ArrayList<RouteCost>>(36);
-        // counts.add(new ArrayList<RouteCost>());
-
-        int[][][] trains;
-        trains = new int[][][]{
-                // root
-                {{0}},
-                // Vancouver = {Calgary (3 Gray), Seattle (1 Gray / 1 Gray)}
-                {{3}, {1, 1}},
-                // Calgary = {Winnipeg (6 White), Helena (4 Gray)}
-                {{6}, {4}},
-                // Seattle = {Calgary (4 Gray), Helena  (6 Yellow), Portland (1 Gray / 1 Gray)}
-                {{4}, {6}, {1, 1}},
-                // Winnipeg = {Sault St. Marie (6 Gray), Duluth (4 Black)}
-                {{6}, {4}},
-                // Helena = {Winnipeg (4 Blue), Duluth (6 Orange), Omaha (5 Red), Denver (4 Green), Salt Lake City (3 Pink)}
-                {{4}, {6}, {5}, {4}, {3}},
-                // Portland = {San Francisco (5 Green / 5 Pink), Salt Lake City (6 Blue)}
-                {{5, 5}, {6}},
-                // Sault St. Marie = {Montreal (5 Black), Toronto (2 Gray)}
-                {{5}, {2}},
-                // Duluth = {Sault St. Marie (3 Gray), Toronto (6 Pink), Chicago (3 Red)}
-                {{3}, {6}, {3}},
-                // Omaha = {Duluth (2 Gray / 2 Gray), Chicago (4 Blue), Kansas City (1 Gray / 1 Gray)}
-                {{2, 2}, {4}, {1, 1}},
-                // San Francisco = { (5 Orange / 5 White), Los Angeles (3 Yellow / 3 Pink)}
-                {{5, 5}, {3, 3}},
-                // Salt Lake City = {Denver (3 Red / 3 Yellow), Las Vegas (3 Orange)}
-                {{3, 3}, {3}},
-                // Montreal = {Boston (2 Gray / 2 Gray), New York (3 Blue)}
-                {{2, 2}, {3}},
-                // Toronto = {Pittsburgh (2 Gray)}
-                {{2}},
-                // Chicago = {Toronto (4 White), Pittsburgh (3 Orange / 3 Black), Saint Louis  (2 Green / 2 White)}
-                {{4}, {3, 3}, {2, 2}},
-                // Kansas City = {Saint Louis (2 Blue / 2 Pink)}
-                {{2, 2}},
-                // Oklahoma City = {Kansas City (2 Gray / 2 Gray), Little Rock (2 Gray), Dallas (2 Gray)}
-                {{2, 2}, {2}, {2}},
-                // Sante Fe = {Oklahoma City (3 Blue), El Paso (2 Gray)}
-                {{3}, {2}},
-                // Los Angeles = {Las Vegas (2 Gray), Phoenix (3 Gray), El Paso (6 Black)}
-                {{2}, {3}, {6}},
-                // Denver = {Omaha (4 Pink), Kansas City (4 Black / 4 Orange), Oklahoma City (4 Red), Sante Fe (2 Gray)}
-                {{4}, {4, 4}, {4}, {2}},
-                // New York = {Boston (2 Yellow / 2 Red), Washington (2 Orange / 2 Black)}
-                {{2, 2}, {2, 2}},
-                // Pittsburgh = {New York (2 White / 2 Green), Washington (2 Gray), Raleigh (2 Gray)}
-                {{2, 2}, {2}, {2}},
-                // Saint Louis = {Pittsburgh (5 Green), Nashville (2 Gray)}
-                {{5}, {2}},
-                // Little Rock = {Nashville (3 White), New Orleans (3 Green)}
-                {{3}, {3}},
-                // Dallas = {Houston (1 Gray / 1 Gray)}
-                {{1, 1}},
-                // El Paso = {Dallas (4 Red), Houston (6 Green)}
-                {{4}, {6}},
-                // Las Vegas = {empty}
-                {},
-                // Boston = {empty}
-                {},
-                // Phoenix = {Sante Fe (3 Gray), El Paso (3 Gray)}
-                {{3}, {3}},
-                // Washington = {empty}
-                {},
-                // Raleigh = {Charleston (2 Gray)}
-                {{2}},
-                // Nashville = {Atlanta (1 Gray)}
-                {{1}},
-                // New Orleans = {Atlanta (4 Yellow / 4 Orange), Miami (6 Red)}
-                {{4, 4}, {6}},
-                // Houston = {New Orleans (2 Gray)}
-                {{2}},
-                // Charleston = {Miami (4 Pink)}
-                {{4}},
-                // Atlanta = {Charleston (2 Gray), Miami (5 Blue)}
-                {{2}, {5}},
-                // Miami = {empty}
-                {}
-        };
-
-
-
-
     }
-
 
     // Get 2 Train Car Cards
     public List<TrainCard> get2TrainCards() {
@@ -246,7 +268,7 @@ public class Board {
         // List of Children Routes
         ArrayList<Route> c = a.getChildren();
         // List of Path costs for each Child Route
-        ArrayList<RouteCost> cost;
+        ArrayList<RouteCost> cost = new ArrayList<>();
         // If no children connected, exit
         if(c.isEmpty())
             return 0;
@@ -267,10 +289,11 @@ public class Board {
                 break;
             }
         }
-        // If there are two paths, pick the one that matches the color
+
         RouteCost path = cost.get(0);
-        if(cost.size() > 1) {
-            path = (cost.get(0).getColor().equals(color)) ? (cost.get(0)) : (cost.get(1));
+        // If there are two paths, pick the one that matches the color
+        if(cost.size() == 2 && !(cost.get(0).getColor().equals(color))) {
+            path = cost.get(1);
         }
         // Check if the claim is legal
         if(trainDeck.canClaim(cards, path.getColor(), path.getCount())) {
@@ -283,6 +306,9 @@ public class Board {
     }
 
     public void print() {
-        Route.print(board);
+        for (int i = 0; i <= 36; ++i) {
+            Route node = board.getNode(i);
+            System.out.println(Route.routes[node.getId()] + node);
+        }
     }
 }
