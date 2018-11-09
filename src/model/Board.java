@@ -18,9 +18,9 @@ import java.util.List;
 public class Board {
 
     // Variables
-    TrainCardDeck trainDeck;
-    DestinationTicketSet destDeck;
-    TrainPieces trainPieces;
+    public TrainCardDeck trainDeck;
+    public DestinationTicketSet destDeck;
+    public TrainPieces trainPieces;
 
     public TrainCardDeck getTrainDeck() {
         return trainDeck;
@@ -30,7 +30,7 @@ public class Board {
         return destDeck;
     }
 
-    Route board;
+    public Route board;
     /* *
      * Class Constructor
      */
