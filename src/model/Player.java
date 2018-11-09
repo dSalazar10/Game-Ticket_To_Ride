@@ -132,6 +132,14 @@ public class Player {
     public void setTurn(){
         turn = !turn;
     }
+    // get the number of remaining train pieces 
+    public int getPeicesLeft(){ 
+        return pieces.size(); 
+    }
+    // get number of destination cards
+    public int getSizeofDest(){ 
+        return destCards.size(); 
+    }
     // override for testing 
     @Override
 	public boolean equals(Object x){
@@ -139,6 +147,4 @@ public class Player {
             Player y = (Player)x;
             return this.name.equals(y.name) && this.pColor == y.pColor;
 	}
-    public int getPeicesLeft(){ return pieces.size(); }
-    public int getSizeofDest(){ return destCards.size(); }
 }
