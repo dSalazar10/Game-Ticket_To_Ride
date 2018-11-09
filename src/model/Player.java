@@ -31,17 +31,21 @@ public class Player {
         //set player's colors
         pColor = c;
         
-        //initialize ArrayList of forty five train pieces with player's color
-        pieces = new TrainPieces().getPieces(c); 
- 
         //initialize points set to zero    
         points = 0;      
     }
     public boolean addBoard(Board b){
+        //assign a player to the board
         board = b;
+        //initialize ArrayList of player's train car cards
         carCards =  b.trainDeck.toPlayer();
+        //initialize ArrayList of player's destination cards
         destCards = b.destDeck.toPlayer();
-        return(board == b && carCards ==  b.trainDeck.toPlayer() && destCards == b.destDeck.toPlayer());
+        //initialize ArrayList of forty five train pieces with player's color
+        pieces = b.trainPieces.getPieces(pColor);
+        // return true if constructed
+        return(board == b && carCards ==  b.trainDeck.toPlayer() && 
+                destCards == b.destDeck.toPlayer() && pieces == b.trainPieces.getPieces(pColor));
     }
     public TrainPiece getTrainPiece(int p){
         return pieces.get(p);
@@ -100,6 +104,7 @@ public class Player {
         board.destDeck.retunTo(temp);
         return true;
     }
+    
     //add player points
     public boolean addPoints(int a){
         int oldpoints = points;
