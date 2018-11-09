@@ -37,47 +37,41 @@ public class Player {
         //initialize points set to zero    
         points = 0;      
     }
- 
     public boolean addBoard(Board b){
         board = b;
         carCards =  b.trainDeck.toPlayer();
         destCards = b.destDeck.toPlayer();
         return(board == b && carCards ==  b.trainDeck.toPlayer() && destCards == b.destDeck.toPlayer());
     }
-   
     public TrainPiece getTrainPiece(int p){
         return pieces.get(p);
     }
-    
-    // insert a TrainPiece into a newly claimed route
-    public boolean insertTrainPiece(DestinationCard dc){
-        // if the DestinationCard route(s) are claimed or we don't have enough train pieces then return false
-//        if(board.claimRoute(dc.getRouteA()) && board.claimRoute(dc.getRouteB()) || pieces.size() < dc.getPts()){
-//            return false; }
-//        else we are going to claim the route and throw out an equivlent amount of train pieces
-//         to the routes path (aka pts)
-//        else{
-//          if(board.claimRoute(dc.getRouteA()){
-//                
-//        
-//            board.claimRoute(dc.getRouteA());
-//            int i = 0;
-//            while(i < dc.getPts()){
-//                pieces.remove(i);
-//            }    
-//        }
-        return true;
-    }
+//    // insert a TrainPiece into a newly claimed route
+//    public boolean insertTrainPiece(DestinationCard dc){
+//        // if the DestinationCard route(s) are claimed or we don't have enough train pieces then return false
+////        if(board.claimRoute(dc.getRouteA()) && board.claimRoute(dc.getRouteB()) || pieces.size() < dc.getPts()){
+////            return false; }
+////        else we are going to claim the route and throw out an equivlent amount of train pieces
+////         to the routes path (aka pts)
+////        else{
+////          if(board.claimRoute(dc.getRouteA()){
+////                     
+////            board.claimRoute(dc.getRouteA());
+////            int i = 0;
+////            while(i < dc.getPts()){
+////                pieces.remove(i);
+////            }    
+////        }
+//        return true;
+//    }
     //retrives a train piece of the players list of train pieces
     public void removeTrainPiece(int p){
         pieces.remove(p);
     }
-    
     //retrieves a train car from the player's list of train cards 
     public TrainCard getTrainCar(int c){
         return carCards.get(c);
     }
-    
     // adds a train car card to player's list of train cars
     public boolean insertTrainCar(TrainCard tc){
         return carCards.add(tc); 
@@ -87,7 +81,6 @@ public class Player {
         TrainCard temp = carCards.get(tc);
         return carCards.remove(temp);
     }
-    
     // returns the players current list destination cards
     public ArrayList<DestinationCard> getDestTixCard(){
         return this.destCards;
@@ -96,7 +89,6 @@ public class Player {
     public ArrayList<TrainCard> getTrainCards(){
         return this.carCards;    
     }
-    
     // add a destination card to the players list of destination cards
     public boolean insertDestTixCard(DestinationCard dc){
         return destCards.add(dc);
