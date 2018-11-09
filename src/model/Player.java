@@ -100,6 +100,7 @@ public class Player {
         board.destDeck.retunTo(temp);
         return true;
     }
+    
     //add player points
     public boolean addPoints(int a){
         int oldpoints = points;
