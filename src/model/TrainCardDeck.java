@@ -47,28 +47,34 @@ public class TrainCardDeck {
 			i++;
 		}
 		i = 0;
-		int j = 0;
+		int j = 1;
 		// Creates all cards and add them to the deck end of the deck
 
-		while (j < 8) {
+		while (j < 9) {
 			while (i < 12) {
 				trainDeck.add(new TrainCard(j));
 				i++;
 			}
+			i = 0;
 			j++;
 		}
 		// Shuffle Cards
 		Collections.shuffle(trainDeck);
 		// 5 cards to the table
+
 		do {
+			int k = 0;
+			while (k < 5) {
+				TrainCard temp = trainDeck.get(k);
+				trainDeck.remove(k);
+				tableCards.add(temp);
+				k++;
+			}
+
 			if(this.checkTable())
 				this.discardToDeck();
-
-			for (int k = 0; k < 5; k++) {
-
-				tableCards.add(trainDeck.pop());
-			}
 		}while(this.checkTable());
+
 	}
 
 	/*
@@ -79,17 +85,23 @@ public class TrainCardDeck {
 	 * a locomotive, the game will not go on until player chooses a non-locmotive card
 	 */
 	public ArrayList<TrainCard> Draw() {
-		boolean t = true;
+		// temp vars
+	    boolean t = true;
 		int x = 0;
 		TrainCard testCard;
 		ArrayList draw = new ArrayList<TrainCard>();
+
 		for (int i = 0; i < 2; i++) {
-			if (trainDeck.isEmpty()) {
+			// t = DeckorTable() a method which finds out if we want a card from deck or table
+		    if(trainDeck.isEmpty() && trainDiscard.isEmpty())
+		        return draw;
+            if (trainDeck.isEmpty()) {
 				this.discardToDeck();
 			}
 			if (t)
 				draw.add(trainDeck.pop());
 			else {
+			    // x = posFromTable() a method which return the index of the card on the table for the player
 				if (i == 1) {
 					do {
 						testCard = this.peak(x);
@@ -137,7 +149,7 @@ public class TrainCardDeck {
 
 				for (int it = 0; it < 5; it++) {
 
-					if(trainDeck.isEmpty())
+					if (trainDeck.isEmpty())
 						this.discardToDeck();
 
 					tableCards.add(trainDeck.pop());
@@ -158,7 +170,7 @@ public class TrainCardDeck {
 		/*
 		 * Add cards to discard pile
 		*/
-		public void addToDiscard (ArrayList < TrainCard > discard) {
+		public void addToDiscard (ArrayList <TrainCard> discard) {
 			for (int i = 0; i < discard.size(); i++) {
 				trainDiscard.add(discard.get(i));
 			}
@@ -178,10 +190,12 @@ public class TrainCardDeck {
 		 */
 		private boolean checkTable(){
 			int locoOnTable = 0;
-			for (int i = 0; i < 5; i++) {
+			int i = 0;
+			while(i < 5) {
 				if (tableCards.get(i).equals(locomotive)) {
 					locoOnTable++;
 				}
+				i++;
 			}
 			if(locoOnTable > 2)
 				return true;
@@ -192,4 +206,28 @@ public class TrainCardDeck {
 		public TrainCard getTopofDeck(){
 			return trainDeck.pop();
 		}
+		/*
+		 * Determines if this is a legal claim
+		 * takes a list of cards, a train card or color and the length of the route
+		 */
+		public boolean canClaim(ArrayList<TrainCard> claim,  Object routeColor, int len){
+		   TrainCard train;
+		    if(routeColor instanceof TrainColor ){
+		        TrainColor color = (TrainColor) routeColor;
+		        train = new TrainCard(color.ordinal());
+           }else if(!(routeColor instanceof TrainCard))
+               return false;
+		   else
+		       train = (TrainCard) routeColor;
+		    int i = 0;
+		    if(claim.size() != len)
+		        return false;
+		    while(i < claim.size()){
+		        if(!train.equals(claim.get(i)) && !locomotive.equals(claim.get(i)))
+		            return false;
+		        i++;
+            }
+            return true;
+        }
+
 	}

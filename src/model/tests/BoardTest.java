@@ -17,16 +17,9 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
 
-    Board b;
-
-    @Before
-    public void setUp() {
-        b = new Board();
-    }
-
     @Test
     public void testBoard() {
-        // TODO : Make some tests
-
+        Board b = new Board();
+        //assertEquals(null, b.get2TrainCards());
     }
 }
