@@ -6,10 +6,8 @@
  * Last Modified    : MM/DD/YY HH:HH
  */
 package model;
-import view.TrainDeck;
 
 import java.io.FileNotFoundException;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
