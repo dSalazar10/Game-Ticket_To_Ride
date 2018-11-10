@@ -9,6 +9,6 @@
 package model;
 // Enum  in order with TrainColor
 public enum TrainType {
-    Locomotive, BoxCar, PassengerCar, TankerCar, ReeferCar, FreightCar, HopperCar,
+    Locomoative, BoxCar, PassengerCar, TankerCar, ReeferCar, FreightCar, HopperCar,
     CoalCar, CabooseCar
 }
