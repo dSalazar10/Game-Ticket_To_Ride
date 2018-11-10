@@ -6,6 +6,9 @@
  * Last Modified    : MM/DD/YY HH:HH
  */
 package model;
+import view.TrainDeck;
+
+import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -13,7 +16,9 @@ import java.util.Collections;
 
 
 public class TrainCardDeck {
-	/*
+    public static boolean t = true;
+    public static int x = 0;
+    /*
 	 * deck
 	 */
 	private LinkedList<TrainCard> trainDeck;
@@ -24,12 +29,11 @@ public class TrainCardDeck {
 	/*
 	 * cards on the table
 	 */
-	private ArrayList<TrainCard> tableCards;
+	public ArrayList<TrainCard> tableCards;
 	/*
 	 * locomotive card to check during drawing
 	 */
 	private TrainCard locomotive;
-
 	/*
 	 * Constructor makes all decks and shuffles cards
 	 */
@@ -84,24 +88,22 @@ public class TrainCardDeck {
 	 * if second time in taking a card from table the player tris to get
 	 * a locomotive, the game will not go on until player chooses a non-locmotive card
 	 */
-	public ArrayList<TrainCard> Draw() {
+	public ArrayList<TrainCard> Draw() throws FileNotFoundException {
 		// temp vars
-	    boolean t = true;
-		int x = 0;
 		TrainCard testCard;
 		ArrayList draw = new ArrayList<TrainCard>();
 
 		for (int i = 0; i < 2; i++) {
-			// t = DeckorTable() a method which finds out if we want a card from deck or table
+
 		    if(trainDeck.isEmpty() && trainDiscard.isEmpty())
 		        return draw;
             if (trainDeck.isEmpty()) {
 				this.discardToDeck();
 			}
+            //UserInput
 			if (t)
 				draw.add(trainDeck.pop());
 			else {
-			    // x = posFromTable() a method which return the index of the card on the table for the player
 				if (i == 1) {
 					do {
 						testCard = this.peak(x);

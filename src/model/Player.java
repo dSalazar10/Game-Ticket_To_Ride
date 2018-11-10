@@ -19,7 +19,7 @@ public class Player {
     private ArrayList<DestinationCard> destCards;
     private int points;
     private String name;
-    private Board board;
+    public Board board;
     private TrainPieces.COLOR pColor;
     private boolean turn = false;
     
