@@ -14,8 +14,6 @@ import java.util.Collections;
 
 
 public class TrainCardDeck {
-    public static boolean t = true;
-    public static int x = 0;
     /*
 	 * deck
 	 */
@@ -86,28 +84,23 @@ public class TrainCardDeck {
 	 * if second time in taking a card from table the player tris to get
 	 * a locomotive, the game will not go on until player chooses a non-locmotive card
 	 */
-	public ArrayList<TrainCard> Draw() {
+	public ArrayList<TrainCard> Draw(boolean t,int x) {
 		// temp vars
 		TrainCard testCard;
 		ArrayList draw = new ArrayList<TrainCard>();
-
-		for (int i = 0; i < 2; i++) {
 
 		    if(trainDeck.isEmpty() && trainDiscard.isEmpty())
 		        return draw;
             if (trainDeck.isEmpty()) {
 				this.discardToDeck();
-			}
-            //UserInput
 			if (t)
 				draw.add(trainDeck.pop());
 			else {
-				if (i == 1) {
 					do {
 						testCard = this.peak(x);
 
 					} while (testCard.equals(locomotive));
-				}
+
 				draw.add(0, this.fromTable(x));
 				if (draw.get(0).equals(locomotive)) ;
 				{

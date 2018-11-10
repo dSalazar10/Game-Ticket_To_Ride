@@ -107,5 +107,7 @@ public class Driver extends Application {
         primaryStage.setTitle("Ticket_To_Ride");
         primaryStage.show();
         Player1.show();
+        Draw.top(p[1]);
+        Draw.top(p[1]);
     }
 }

@@ -54,7 +54,7 @@ public class Ticket2Ride {
         int iter = 0;
         int turn = 0;
         /*
-         * Will loop and take one players turn at a time, then checks if a player has 3 or less
+         * Will loop and take one players turn at a time, then checks if a player has 2 or less
          * Train Pieces if so each player will take one more turn else keep taking turns
          * Without user input (User input is marked) it loops forever and Draws 2 cards from TrainCarDeck
          * until TrainCardDeck is empty then just loops.
@@ -67,7 +67,7 @@ public class Ticket2Ride {
             while (player < 4) {
                 if(turn == player)
                     System.out.println("Player " + player + " Draw Train Cards");
-                drawingCards = usaBoard.trainDeck.Draw();
+                drawingCards = usaBoard.trainDeck.Draw(true, 0);
                 while (iter < drawingCards.size()) {
                     p[player - 1].insertTrainCar(drawingCards.get(iter));
                     iter++;
@@ -114,7 +114,7 @@ public class Ticket2Ride {
             if(turn == player) {
 
                 System.out.println("Player " + player + " Draw Train Cards");
-                drawingCards = usaBoard.trainDeck.Draw();
+                drawingCards = usaBoard.trainDeck.Draw(true, 0);
                 while (iter < drawingCards.size()) {
                     p[player - 1].insertTrainCar(drawingCards.get(iter));
                     iter++;
