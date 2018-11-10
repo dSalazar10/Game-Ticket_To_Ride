@@ -29,6 +29,6 @@ public class TrainCard{
 	}
 	@Override
 		public String toString(){
-		return this.type + " " + this.color + "\n";
+		return this.type + "\n";
 	}
 }
