@@ -22,10 +22,11 @@ import java.io.FileNotFoundException;
 
 public class Cards{
     //takes a TrainCard and makes a button with that TrainCard on it
-    public Image image;
-    public Button button;
+    static Image image;
+    public static Button button;
     public static int i = 0;
-    public  Cards (TrainCard card)throws FileNotFoundException {
+
+    public static Button bCards (TrainCard card)throws FileNotFoundException {
         image = new Image(new FileInputStream("TrainCardImages\\" + card.getType() + ".jpg"));
 
         button = new Button(card.toString() + " Card");
@@ -34,6 +35,7 @@ public class Cards{
         button.setTranslateX(i);
         button.setTranslateY(0);
         i+=10;
+        return button;
     }
 }
 

@@ -42,38 +42,50 @@ public class Driver extends Application {
 
         for(int i = 0; i < 3; i++)
             p[i].addBoard(usaBoard);
-        ArrayList<Cards> ima = new ArrayList();
+
 
         int i = 0;
         int player = 0;
 
-        tCards = p[player].getTrainCards();
 
+        Button p1c[] = new Button[p.length];
+        Button p2c[] = new Button[p.length];
+        Button p3c[] = new Button[p.length];
 
-        Button []box = new Button[tCards.size()];
+        while(i < p.length){
 
-        while(i < tCards.size()){
-            ima.add(new Cards(tCards.get(i)));
-            box[i] = ima.get(ima.size() - 1).button;
+            p1c[i] = Cards.bCards(p[0].getTrainCards().get(i));
+            p2c[i] = Cards.bCards(p[1].getTrainCards().get(i));
+            p3c[i] = Cards.bCards(p[2].getTrainCards().get(i));
             i++;
         }
 
-        HBox hbox = new HBox();
-        hbox.getChildren().addAll(box);
+        HBox p1box = new HBox();
+        p1box.getChildren().addAll(p1c);
+
+        HBox p2box = new HBox();
+        p2box.getChildren().addAll(p2c);
+
+        HBox p3box = new HBox();
+        p3box.getChildren().addAll(p3c);
 
         Stage Player1 = new Stage();
         Player1.setTitle("Player 1");
-        Player1.setScene(new Scene(hbox, 1024, 342));
+        Player1.setScene(new Scene(p1box, 1024, 342));
 
         Stage Player2 = new Stage();
         Player2.setTitle("Player 2");
+        Player2.setScene(new Scene(p2box, 1024, 342));
 
         Stage Player3 = new Stage();
         Player3.setTitle("Player 3");
+        Player3.setScene(new Scene(p3box, 1024, 342));
 
         primaryStage.setScene(new Scene(boardView.getBoard(), 1024, 683));
         primaryStage.setTitle("Ticket_To_Ride");
         primaryStage.show();
         Player1.show();
+        Player2.show();
+        Player3.show();
     }
 }
