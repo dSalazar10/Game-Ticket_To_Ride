@@ -10,6 +10,9 @@
  * cards and pieces placed on the board.
  */
 
+// TODO: - Fix the board model's data structure pointer logic errors
+// TODO: - Update the board model to include the costs for claimRoute
+
 package model;
 
 import java.util.ArrayList;
@@ -123,11 +126,8 @@ public class Board {
                 {}
         };
 
-        Route node = board;
-        for(int i = 0; i < routes.length; ++i) {
-            node = board.getNode(i);
-            node.setCost(routes[i]);
-        }
+        int i = 0;
+        if (i < routes.length) do { (board.getNode(i)).setCost(routes[i++]); } while (i < routes.length);
     }
 
     private void setChildren() {
@@ -210,10 +210,9 @@ public class Board {
                 {}
         };
 
-        Route node = board;
         // Set all the nodes
         for(int i = 0; i < children.length; ++i) {
-            node = board.getNode(i);
+            Route node = board.getNode(i);
 
             // TODO: Debug
             if(i == 2) {
