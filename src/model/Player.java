@@ -1,9 +1,9 @@
 /*
  * Player.java
- * Version 0.1.6    : Setup
+ * Version 0.1.7    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 11/9/18
- * Last Modified    : 11/8/18 2:52
+ * Last Modified    : 11/9/18 6:30
  *
  * This class represents a player.
  *  
@@ -50,24 +50,6 @@ public class Player {
     public TrainPiece getTrainPiece(int p){
         return pieces.get(p);
     }
-//    // insert a TrainPiece into a newly claimed route
-//    public boolean insertTrainPiece(DestinationCard dc){
-//        // if the DestinationCard route(s) are claimed or we don't have enough train pieces then return false
-////        if(board.claimRoute(dc.getRouteA()) && board.claimRoute(dc.getRouteB()) || pieces.size() < dc.getPts()){
-////            return false; }
-////        else we are going to claim the route and throw out an equivlent amount of train pieces
-////         to the routes path (aka pts)
-////        else{
-////          if(board.claimRoute(dc.getRouteA()){
-////                     
-////            board.claimRoute(dc.getRouteA());
-////            int i = 0;
-////            while(i < dc.getPts()){
-////                pieces.remove(i);
-////            }    
-////        }
-//        return true;
-//    }
     //retrives a train piece of the players list of train pieces
     public void removeTrainPiece(int p){
         pieces.remove(p);
@@ -104,7 +86,22 @@ public class Player {
         board.destDeck.retunTo(temp);
         return true;
     }
-    
+    //subtract remaing destination cards
+    public int remaingDestCards(){
+        int i = 0;
+        int deductedPoints = 0;
+        while(i < destCards.size()){
+            deductedPoints =+ destCards.get(i).getPts();
+        }    
+        return deductedPoints;
+    }
+    //longest route bonus
+    public boolean longestRouteBonus(){
+        // TODO : check longest continuous path
+        int pts = points;
+        points =+ 10; 
+        return pts+10 == points;
+    }   
     //add player points
     public boolean addPoints(int a){
         int oldpoints = points;
@@ -137,6 +134,7 @@ public class Player {
     public int getSizeofDest(){ 
         return destCards.size(); 
     }
+    
     // override for testing 
     @Override
 	public boolean equals(Object x){
