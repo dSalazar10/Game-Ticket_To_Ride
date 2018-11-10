@@ -20,5 +20,10 @@ public class DestinationCard{
     public String getRouteA() { return this.routeB; }
     public int getPts() { return this.pts; }
 
+    @Override
+    public String toString(){
+        return this.routeA + "\nTO\n" + this.routeB + "\nPts: " + this.pts;
+    }
+
 
 }

@@ -8,34 +8,32 @@
 
 package view;
 
-import javafx.application.Application;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.scene.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.*;
 import model.TrainCard;
 import java.io.FileInputStream;
 import javafx.scene.control.Button;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import java.io.FileNotFoundException;
 
 public class Cards{
     //takes a TrainCard and makes a button with that TrainCard on it
     static Image image;
     public static Button button;
-    public static int i = 0;
-
-    public static Button bCards (TrainCard card)throws FileNotFoundException {
+    public static Button bCards (TrainCard card, int x)throws FileNotFoundException {
         image = new Image(new FileInputStream("TrainCardImages\\" + card.getType() + ".jpg"));
-
         button = new Button(card.toString() + " Card");
         button.setStyle("-fx-font-family: papyrus");
         button.setGraphic(new ImageView(image));
-        button.setTranslateX(i);
-        button.setTranslateY(0);
-        i+=10;
+        button.setTranslateX(x);
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(card.toString());
+            }
+        });
         return button;
+
     }
 }
 
