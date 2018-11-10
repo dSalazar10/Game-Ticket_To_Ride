@@ -86,7 +86,7 @@ public class TrainCardDeck {
 	 * if second time in taking a card from table the player tris to get
 	 * a locomotive, the game will not go on until player chooses a non-locmotive card
 	 */
-	public ArrayList<TrainCard> Draw() throws FileNotFoundException {
+	public ArrayList<TrainCard> Draw() {
 		// temp vars
 		TrainCard testCard;
 		ArrayList draw = new ArrayList<TrainCard>();
