@@ -48,11 +48,11 @@ public class Driver extends Application {
         int player = 0;
 
 
-        Button p1c[] = new Button[p.length];
-        Button p2c[] = new Button[p.length];
-        Button p3c[] = new Button[p.length];
+        Button p1c[] = new Button[4];
+        Button p2c[] = new Button[4];
+        Button p3c[] = new Button[4];
 
-        while(i < p.length){
+        while(i < 4){
 
             p1c[i] = Cards.bCards(p[0].getTrainCards().get(i));
             p2c[i] = Cards.bCards(p[1].getTrainCards().get(i));
