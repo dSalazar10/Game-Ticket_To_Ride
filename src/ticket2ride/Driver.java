@@ -81,7 +81,7 @@ public class Driver extends Application {
         Player3.setTitle("Player 3");
         Player3.setScene(new Scene(p3box, 1024, 342));
 
-        primaryStage.setScene(new Scene(boardView.getBoard(), 1024, 683));
+        primaryStage.setScene(new Scene(BoardView.getBoard(), 1024, 683));
         primaryStage.setTitle("Ticket_To_Ride");
         primaryStage.show();
         Player1.show();
