@@ -22,7 +22,7 @@ import javafx.scene.shape.Circle;
 public class BoardView {
 
     // returns a Stack Pane containing an Image View of resources/board.jpg and a Grid Plane containing a list of Buttons
-    public StackPane getBoard() {
+    public static StackPane getBoard() {
         // Hard coded coordinates of the red circles on the board's image
         // Origin is in the Top-Left corner
         // First number is the x-coordinate (Left/Right)
