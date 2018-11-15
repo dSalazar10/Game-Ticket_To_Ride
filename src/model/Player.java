@@ -3,7 +3,7 @@
  * Version 0.1.7    : Setup
  * Programmer       : Adam Hennefer
  * Due Date         : 11/9/18
- * Last Modified    : 11/9/18 6:30
+ * Last Modified    : 11/9/18 9:08
  *
  * This class represents a player.
  *  
@@ -19,9 +19,10 @@ public class Player {
     private ArrayList<DestinationCard> destCards;
     private int points;
     private String name;
-    private Board board;
+    public Board board;
     private TrainPieces.COLOR pColor;
     private boolean turn = false;
+    private boolean lastTurn = false;
     
 // construct player object
     public Player(String n, TrainPieces.COLOR c){
@@ -125,6 +126,15 @@ public class Player {
     // change players turn
     public void setTurn(){
         turn = !turn;
+    }
+    // set player's final turn
+    public boolean setFinalTurn(){
+        lastTurn = true;
+        return lastTurn;
+    }
+    // check for player's final turn
+    public boolean getFinalTurn(){
+        return lastTurn;
     }
     // get the number of remaining train pieces 
     public int getPeicesLeft(){ 

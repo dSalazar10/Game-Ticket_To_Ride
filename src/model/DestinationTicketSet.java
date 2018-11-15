@@ -69,7 +69,7 @@ public class DestinationTicketSet{
     }
     public ArrayList<DestinationCard> toPlayer(){
         ArrayList<DestinationCard> forPlayer = new ArrayList<DestinationCard>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 3; i++){
             forPlayer.add(Set.pop());
         }
         return forPlayer;
