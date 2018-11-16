@@ -101,7 +101,7 @@ public class Route {
         else
             return node;
     }
-    private Route getNode(int id, Route node, int depth) {
+    public static Route getNode(int id, Route node, int depth) {
 
         for (Route child : node.getChildren()) {
             Route n = getNode(id, child, depth + 1);
