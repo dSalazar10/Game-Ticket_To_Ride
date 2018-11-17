@@ -213,6 +213,19 @@ public class Board {
         // Set all the nodes
         for(int i = 0; i < children.length; ++i) {
             Route node = board.getNode(i);
+
+            // TODO: Debug
+            if(i == 2) {
+
+                System.out.print("Children{ ");
+                for(int c : children[i]) {
+                    System.out.print(c + " ");
+                }
+
+                System.out.println("}");
+            }
+            // TODO: End Debug
+
             node.setChildren(children[i]);
         }
     }

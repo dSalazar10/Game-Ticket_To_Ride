@@ -14,15 +14,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
-import model.Route;
 
 public class BoardView {
 
-    public static Boolean firstCity = true;
-    public static int firstCityID = 0;
     // returns a Stack Pane containing an Image View of resources/board.jpg and a Grid Plane containing a list of Buttons
     public static StackPane getBoard() {
         // Hard coded coordinates of the red circles on the board's image
@@ -105,9 +103,8 @@ public class BoardView {
         };
 
         // Board Image
-        ImageView boardImg = new ImageView();
-        boardImg.setId("boardImgView");
-        boardImg.setImage(new Image("resources/board.jpg",1024,683, false, false));
+        ImageView board = new ImageView();
+        board.setImage(new Image("resources/board.jpg",1024,683, false, false));
 
         // City buttons
         Button[] buttonList = new Button[pos.length];
@@ -130,32 +127,18 @@ public class BoardView {
                     Button btn = (Button) event.getSource();
                     String id = btn.getId();
                     System.out.println(id);
-                    if(firstCity.equals(true)) {
-                        // First city selected in claim route, waiting for #2
-                        firstCity = false;
-                        firstCityID = Integer.parseInt(id);
-                    } else {
-                        firstCity = true;
-                        // Both cities have been selected
-                        Route first = Route.getNode(firstCityID, Route.root, 0);
-                        if(first.getChildren().contains(Route.getNode(Integer.parseInt(id), Route.root, 0))) {
-                            // Do Something after both cities selected
-                        }
-                    }
                 }
             });
         }
 
         // Put all the city buttons in the Grid Pane
         GridPane cities = new GridPane();
-        cities.setId("citiesGripPane");
         cities.getChildren().addAll(buttonList);
 
         // Put the board and the cities in a Stack Pane
-        StackPane board = new StackPane();
-        board.setId("boardStackPane");
-        board.getChildren().addAll(boardImg, cities);
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(board, cities);
 
-        return board;
+        return stackPane;
     }
 }

@@ -8,7 +8,10 @@
 
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
 
 public class Route {
 
@@ -101,7 +104,7 @@ public class Route {
         else
             return node;
     }
-    public static Route getNode(int id, Route node, int depth) {
+    private Route getNode(int id, Route node, int depth) {
 
         for (Route child : node.getChildren()) {
             Route n = getNode(id, child, depth + 1);
