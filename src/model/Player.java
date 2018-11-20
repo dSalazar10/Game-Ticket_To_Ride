@@ -20,19 +20,21 @@ public class Player {
     private ArrayList<DestinationCard> destCards;
     private int points;
     private String name;
-    public Board board;
     private TrainPieces.COLOR pColor;
     private boolean turn = false;
     private boolean lastTurn = false;
-    public List<String> claimedRoutes[];
     //iterator for addClaimedRoute() method
     private int it = 0;
+    private List<Path> adjList[];
+    
+    public List<String> claimedRoutes[];
+    public Board board;  
     
 // construct player object
     public Player(String n, TrainPieces.COLOR c){
         //set player's name
         name = n;
-        
+      
         //set player's colors
         pColor = c;
         
@@ -50,103 +52,79 @@ public class Player {
         pieces = b.trainPieces.getPieces(pColor);
         //initialize an empty list of claimed routes
         claimedRoutes = new LinkedList[46];
+        //create adjacentcy list
+        adjList = adjacentcyList();
         // return true if constructed
         return(board == b && carCards ==  b.trainDeck.toPlayer() && 
                 destCards == b.destDeck.toPlayer() && pieces == b.trainPieces.getPieces(pColor));
     }
-    // create and get adjacency list 
-    public List<String>[] getAdjacentcyList(){
-        List<String> adjList[] = new LinkedList[36];
+
+    // create adjacentcy list
+    private List<Path>[] adjacentcyList(){    
+        List<Path> adjList[] = new LinkedList[36];
             for (int i=0; i<36; i++) adjList[i] = new LinkedList<>();
-                adjList[0].add("Vancouver"); adjList[0].add("Calgary"); adjList[0].add("Seattle");
-                adjList[1].add("Calgary"); adjList[1].add("Winnipeg"); adjList[1].add("Seattle"); adjList[1].add("Helena");
-                adjList[2].add("Winnipeg"); adjList[2].add("Sault St. Marie"); adjList[2].add("Calgary"); 
-                    adjList[2].add("Sault St. Marie"); adjList[2].add("Helena"); adjList[2].add("Duluth");
-                adjList[3].add("Sault St. Marie"); adjList[3].add("Winnipeg");  adjList[3].add("Duluth");  
-                    adjList[3].add("Toronto");  adjList[3].add("Montreal");
-                adjList[4].add("Montreal");  adjList[4].add("Sault St. Marie");  adjList[4].add("Toronto");  
-                    adjList[4].add("New York"); adjList[4].add("Boston");
-                adjList[5].add("Seattle"); adjList[5].add("Portland"); adjList[5].add("Helena"); adjList[5].add("Calgary");
-                adjList[6].add("Helena"); adjList[6].add("Seattle"); adjList[6].add("Calgary"); adjList[6].add("Winnipeg");
-                    adjList[6].add("Duluth"); adjList[6].add("Omaha"); adjList[6].add("Denver"); adjList[6].add("Salt Lake");
-                adjList[7].add("Duluth"); adjList[7].add("Helena"); adjList[7].add("Winnipeg"); adjList[8].add("Sault St. Marie");
-                    adjList[7].add("Toronto"); adjList[7].add("Chicago"); adjList[7].add("Omaha");
-                adjList[8].add("Toronto");  adjList[8].add("Duluth");  adjList[8].add("Sault St. Marie");  
-                    adjList[8].add("Montreal");  adjList[8].add("Pittsburg");  adjList[8].add("Chicago");
-                adjList[9].add("Boston"); adjList[9].add("Montreal"); adjList[9].add("New York");  
-                adjList[10].add("Portland"); adjList[10].add("Seattle"); adjList[10].add("Salt Lake City"); 
-                    adjList[10].add("San Francisco");
-                adjList[11].add("Salt Lake City"); adjList[11].add("Portland"); adjList[11].add("Helena"); 
-                    adjList[11].add("Denver"); adjList[11].add("Las Vegas"); adjList[11].add("San Francisco");
-                adjList[12].add("Denver"); adjList[12].add("Salt Lake City"); adjList[12].add("Helena"); 
-                    adjList[12].add("Omaha"); adjList[12].add("Kansas City"); adjList[12].add("Oklahoma City");
-                    adjList[12].add("Santa Fe"); adjList[12].add("Phoenix");
-                adjList[13].add("Omaha"); adjList[13].add("Denver"); adjList[13].add("Helena");
-                    adjList[13].add("Duluth"); adjList[13].add("Chicago"); adjList[13].add("Kansas City");
-                adjList[14].add("Chicago"); adjList[14].add("Omaha"); adjList[14].add("Duluth"); 
-                    adjList[14].add("Toronto"); adjList[14].add("Pittsburgh"); adjList[14].add("Saint Louis"); 
-                adjList[15].add("Pittsburg"); adjList[15].add("Chicago"); adjList[15].add("Toronto"); 
-                    adjList[15].add("New York"); adjList[15].add("Washington"); adjList[15].add("Raleigh"); 
-                    adjList[15].add("Nashville"); adjList[15].add("Saint Louis");
-                adjList[16].add("New York"); adjList[16].add("Pittsburg"); adjList[16].add("Montreal"); 
-                    adjList[16].add("Boston"); adjList[16].add("Washington");
-                adjList[17].add("San Francisco"); adjList[17].add("Portland"); adjList[17].add("Salt Lake City"); 
-                    adjList[17].add("Los Angeles");
-                adjList[18].add("Las Vegas"); adjList[18].add("Los Angeles"); adjList[18].add("Salt Lake City");
-                adjList[19].add("Kanas City"); adjList[19].add("Denver"); adjList[19].add("Omaha"); 
-                    adjList[19].add("Saint Louis");  adjList[19].add("Oklahoma City");   
-                adjList[20].add("Saint Louis"); adjList[20].add("Kansas City");  adjList[20].add("Chicago"); 
-                    adjList[20].add("Pittsburg");  adjList[20].add("Nashville");  adjList[20].add("Little Rock");
-                adjList[21].add("Nashville"); adjList[21].add("Saint Louis"); adjList[21].add("Pittsburg"); 
-                    adjList[21].add("Raliegh"); adjList[21].add("Atlanta"); adjList[21].add("Little Rock");
-                adjList[22].add("Raleigh"); adjList[22].add("Nashville"); adjList[22].add("Pittsburg");
-                    adjList[22].add("Washington");adjList[22].add("Charleston"); adjList[22].add("Atlanta");
-                adjList[23].add("Washington"); adjList[23].add("Raleigh"); adjList[23].add("Pittsburg"); 
-                    adjList[23].add("New York");
-                adjList[24].add("Los Angeles"); adjList[24].add("San Francisco"); adjList[24].add("Las Vegas"); 
-                    adjList[24].add("Phoenix"); adjList[24].add("El Paso");
-                adjList[25].add("Phoenix"); adjList[25].add("Los Angeles"); adjList[25].add("Denver"); 
-                    adjList[25].add("Santa Fe"); adjList[25].add("El Paso");
-                adjList[26].add("Santa Fe"); adjList[26].add("Phoenix"); adjList[26].add("Denver"); 
-                    adjList[26].add("Oklahoma City"); adjList[26].add("El Paso");
-                adjList[27].add("Oklahoma City"); adjList[27].add("Santa Fe"); adjList[27].add("Denver"); 
-                    adjList[27].add("Kansas City"); adjList[27].add("Little Rock"); adjList[27].add("Dallas");
-                    adjList[27].add("El Paso");
-                adjList[28].add("Little Rock"); adjList[28].add("Oklahoma City"); adjList[28].add("Saint Louis");
-                    adjList[28].add("Nashville");adjList[28].add("New Orleans");adjList[28].add("Dallas");
-                adjList[29].add("Atlanta");  adjList[29].add("Nashville"); adjList[29].add("Raleigh"); 
-                    adjList[29].add("Charleston");  adjList[29].add("Miami"); adjList[29].add("New Orleans");
-                adjList[30].add("Charleston");adjList[30].add("Atlanta");adjList[30].add("Miami");
-                adjList[31].add("El Paso"); adjList[31].add("Los Angeles");adjList[31].add("Phoenix");
-                    adjList[31].add("Santa Fe");adjList[31].add("Oklahoma City");adjList[31].add("Dallas");
-                    adjList[31].add("Houston");
-                adjList[32].add("Dallas"); adjList[32].add("El Paso");adjList[32].add("Oklahoma City");
-                    adjList[32].add("Little Rock");adjList[32].add("Houston");
-                adjList[33].add("Houston"); adjList[33].add("El Paso"); adjList[33].add("Dallas"); 
-                    adjList[33].add("New Orleans");
-                adjList[34].add("New Orleans");adjList[34].add("Houston");adjList[34].add("Little Rock");
-                    adjList[34].add("Atlanta");adjList[34].add("Miami");
-                adjList[35].add("Miami"); adjList[35].add("New Orleans"); adjList[35].add("Atlanta");
-                    adjList[35].add("Charleston");
-            
+                adjList[0].add(new Path("Vancouver",0)); adjList[0].add(new Path("Calgary",3 )); adjList[0].add(new Path("Seattle", 1));
+                adjList[1].add(new Path("Calgary", 0)); adjList[1].add( new Path("Winnipeg", 6)); adjList[1].add(new Path("Seattle", 4)); adjList[1].add(new Path("Helena", 4));
+                adjList[2].add(new Path("Winnipeg",0)); adjList[2].add(new Path("Sault St. Marie", 6)); adjList[2].add(new Path("Calgary", 6)); adjList[2].add(new Path("Helena", 4)); adjList[2].add(new Path("Duluth", 4));            
+                adjList[3].add(new Path("Sault St. Marie", 0)); adjList[3].add(new Path("Winnipeg",6 ));  adjList[3].add(new Path("Duluth", 3)); adjList[3].add(new Path("Toronto", 2)); adjList[3].add(new Path("Montreal", 5));
+                adjList[4].add(new Path("Montreal", 0));  adjList[4].add(new Path("Sault St. Marie", 5));  adjList[4].add(new Path("Toronto", 3)); adjList[4].add(new Path("New York", 3)); adjList[4].add(new Path("Boston", 2));
+                adjList[5].add(new Path("Seattle", 0)); adjList[5].add(new Path("Portland",1)); adjList[5].add(new Path("Helena",6)); adjList[5].add(new Path("Calgary", 4));
+                adjList[6].add(new Path("Helena", 0)); adjList[6].add(new Path("Seattle", 6)); adjList[6].add(new Path("Calgary", 4)); adjList[6].add(new Path("Winnipeg",4 )); adjList[6].add(new Path("Duluth", 6)); adjList[6].add(new Path("Omaha", 5)); adjList[6].add(new Path("Denver", 4)); adjList[6].add(new Path("Salt Lake", 3));
+                adjList[7].add(new Path("Duluth",0)); adjList[7].add(new Path("Helena",6)); adjList[7].add(new Path("Winnipeg", 4)); adjList[8].add(new Path("Sault St. Marie", 3)); adjList[7].add(new Path("Toronto", 6)); adjList[7].add(new Path("Chicago", 3)); adjList[7].add(new Path("Omaha", 2));
+                adjList[8].add(new Path("Toronto", 0));  adjList[8].add(new Path("Duluth",6));  adjList[8].add(new Path("Sault St. Marie", 2)); adjList[8].add(new Path("Montreal", 3));  adjList[8].add(new Path("Pittsburgh",2)); adjList[8].add(new Path("Chicago", 4));
+                adjList[9].add(new Path("Boston",0)); adjList[9].add(new Path("Montreal",2)); adjList[9].add(new Path("New York", 2));  
+                adjList[10].add(new Path("Portland",0)); adjList[10].add(new Path("Seattle", 1)); adjList[10].add(new Path("Salt Lake City",6));adjList[10].add(new Path("San Francisco", 5));
+                adjList[11].add(new Path("Salt Lake City",0)); adjList[11].add(new Path("Portland", 6)); adjList[11].add(new Path("Helena", 3)); adjList[11].add(new Path("Denver",3)); adjList[11].add(new Path("Las Vegas",3)); adjList[11].add(new Path("San Francisco",5));
+                adjList[12].add(new Path("Denver",0)); adjList[12].add(new Path("Salt Lake City", 3)); adjList[12].add(new Path("Helena",4 )); adjList[12].add(new Path("Omaha",1)); adjList[12].add(new Path("Kansas City",4 )); adjList[12].add(new Path("Oklahoma City", 4)); adjList[12].add(new Path("Santa Fe",2)); adjList[12].add(new Path("Phoenix", 5));
+                adjList[13].add(new Path("Omaha",0)); adjList[13].add(new Path("Denver",4)); adjList[13].add(new Path("Helena", 5));adjList[13].add(new Path("Duluth", 2)); adjList[13].add(new Path("Chicago", 4)); adjList[13].add(new Path("Kansas City",1 ));
+                adjList[14].add(new Path("Chicago",0)); adjList[14].add(new Path("Omaha",4)); adjList[14].add(new Path("Duluth", 3));adjList[14].add(new Path("Toronto", 4)); adjList[14].add(new Path("Pittsburgh", 3)); adjList[14].add(new Path("Saint Louis",2)); 
+                adjList[15].add(new Path("Pittsburgh",0)); adjList[15].add(new Path("Chicago",3)); adjList[15].add(new Path("Toronto",2)); adjList[15].add(new Path("New York",2)); adjList[15].add(new Path("Washington", 2)); adjList[15].add(new Path("Raleigh", 2)); adjList[15].add(new Path("Nashville", 4)); adjList[15].add(new Path("Saint Louis", 5));
+                adjList[16].add(new Path("New York",0)); adjList[16].add(new Path("Pittsburgh",2)); adjList[16].add(new Path("Montreal",3)); adjList[16].add(new Path("Boston", 2)); adjList[16].add(new Path("Washington",2));
+                adjList[17].add(new Path("San Francisco",0)); adjList[17].add(new Path("Portland",5)); adjList[17].add(new Path("Salt Lake City",5)); adjList[17].add(new Path("Los Angeles",3));
+                adjList[18].add(new Path("Las Vegas", 0)); adjList[18].add(new Path("Los Angeles", 2)); adjList[18].add(new Path("Salt Lake City", 3));
+                adjList[19].add(new Path("Kanas City",0)); adjList[19].add(new Path("Denver",4)); adjList[19].add(new Path("Omaha",1));adjList[19].add(new Path("Saint Louis",2));  adjList[19].add(new Path("Oklahoma City",2));  
+                adjList[20].add(new Path("Saint Louis",0)); adjList[20].add(new Path("Kansas City",2));  adjList[20].add(new Path("Chicago",2)); adjList[20].add(new Path("Pittsburgh",5));  adjList[20].add(new Path("Nashville", 2));  adjList[20].add(new Path("Little Rock",2 ));
+                adjList[21].add(new Path("Nashville",0)); adjList[21].add(new Path("Saint Louis",2)); adjList[21].add(new Path("Pittsburgh", 4)); adjList[21].add(new Path("Raliegh", 3)); adjList[21].add(new Path("Atlanta", 1)); adjList[21].add(new Path("Little Rock", 3));
+                adjList[22].add(new Path("Raleigh",0)); adjList[22].add(new Path("Nashville",3)); adjList[22].add(new Path("Pittsburgh",2)); adjList[22].add(new Path("Washington",2));adjList[22].add(new Path("Charleston",2)); adjList[22].add(new Path("Atlanta",2));
+                adjList[23].add(new Path("Washington",0)); adjList[23].add(new Path("Raleigh",2)); adjList[23].add(new Path("Pittsburgh", 2)); adjList[23].add(new Path("New York",2));
+                adjList[24].add(new Path("Los Angeles",0)); adjList[24].add(new Path("San Francisco",3)); adjList[24].add(new Path("Las Vegas",2)); adjList[24].add(new Path("Phoenix", 3)); adjList[24].add(new Path("El Paso",6));
+                adjList[25].add(new Path("Phoenix", 0)); adjList[25].add(new Path("Los Angeles", 3)); adjList[25].add(new Path("Denver",5)); adjList[25].add(new Path("Santa Fe",3)); adjList[25].add(new Path("El Paso",3));
+                adjList[26].add(new Path("Santa Fe",0)); adjList[26].add(new Path("Phoenix",3)); adjList[26].add(new Path("Denver",2)); adjList[26].add(new Path("Oklahoma City",3 )); adjList[26].add(new Path("El Paso",2));
+                adjList[27].add(new Path("Oklahoma City",0)); adjList[27].add(new Path("Santa Fe",3)); adjList[27].add(new Path("Denver",4)); adjList[27].add(new Path("Kansas City",2)); adjList[27].add(new Path("Little Rock", 2)); adjList[27].add(new Path("Dallas",2));adjList[27].add(new Path("El Paso",5));
+                adjList[28].add(new Path("Little Rock",0)); adjList[28].add(new Path("Oklahoma City",2)); adjList[28].add(new Path("Saint Louis",2));adjList[28].add(new Path("Nashville",3));adjList[28].add(new Path("New Orleans", 3));adjList[28].add(new Path("Dallas", 2));
+                adjList[29].add(new Path("Atlanta",0));  adjList[29].add(new Path("Nashville",1)); adjList[29].add(new Path("Raleigh",2)); adjList[29].add(new Path("Charleston", 2));  adjList[29].add(new Path("Miami",5)); adjList[29].add(new Path("New Orleans", 4));
+                adjList[30].add(new Path("Charleston",0));adjList[30].add(new Path("Atlanta",2));adjList[30].add(new Path("Raleigh",2)); adjList[30].add(new Path("Miami",4));
+                adjList[31].add(new Path("El Paso",0)); adjList[31].add(new Path("Los Angeles",6));adjList[31].add(new Path("Phoenix",3)); adjList[31].add(new Path("Santa Fe",2));adjList[31].add(new Path("Oklahoma City",5));adjList[31].add(new Path("Dallas",4)); adjList[31].add(new Path("Houston",6));
+                adjList[32].add(new Path("Dallas",0 )); adjList[32].add(new Path("El Paso",4));adjList[32].add(new Path("Oklahoma City",2));adjList[32].add(new Path("Little Rock",2));adjList[32].add(new Path("Houston",1));
+                adjList[33].add(new Path("Houston",0)); adjList[33].add(new Path("El Paso", 6)); adjList[33].add(new Path("Dallas",1)); adjList[33].add(new Path("New Orleans",2));
+                adjList[34].add(new Path("New Orleans",0));adjList[34].add(new Path("Houston",2));adjList[34].add(new Path("Little Rock",3));adjList[34].add(new Path("Atlanta",4));adjList[34].add(new Path("Miami", 6));
+                adjList[35].add(new Path("Miami",0)); adjList[35].add(new Path("New Orleans",6)); adjList[35].add(new Path("Atlanta",5)); adjList[35].add(new Path("Charleston",4));
+     
         return adjList;
     }
-    // test adjacent routes  
+    // get adjacency list 
+    public List<Path>[] getAdjacentcyList(){
+        return adjList;
+    }
+    // test if cities are adjacent
+    // recieves two city names
     public boolean isAdjacent(String s1, String s2){
         if(s1 == s2) return false;
-        List<String>[] temp = getAdjacentcyList();
+        List<Path>[] temp = getAdjacentcyList();
+        Path c1 = new Path(s1,0);
+        Path c2 = new Path(s2,0);
         for (int i=0; i< temp.length; i++){
-            if (temp[i].contains(s1) && temp[i].contains(s2)) return true;
+            if (temp[i].contains(c1) && temp[i].contains(c2)) return true;
         }
         return false;
     }
-    // add routes to player's claimed route list
+    // add route to player's claimed routes list
     public boolean addClaimedRoute(String s1, String s2){
         if(s1 == s2) return false;
-        claimedRoutes[it] = new LinkedList<>();
+        claimedRoutes[it] = new LinkedList<>();               
         return claimedRoutes[it].add(s1) && claimedRoutes[it].add(s2) && iter_it();        
     }
-    // iterator function for class member int it.
+    // iterator incrementor for addClamiedRoute method
     private boolean iter_it(){
         int iter = it;
         it++;
@@ -248,8 +226,7 @@ public class Player {
     // get number of destination cards
     public int getSizeofDest(){ 
         return destCards.size(); 
-    }
-    
+    } 
     // override for testing 
     @Override
 	public boolean equals(Object x){
