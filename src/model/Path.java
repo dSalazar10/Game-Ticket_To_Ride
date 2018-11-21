@@ -15,19 +15,24 @@ import java.util.Objects;
 public class Path {
     private String city;
     private int dist;
+    
     Path(String c, int d){
         this.city = c;
         this.dist = d; 
     }
-//    boolean addPath(String c, int d){
-//        return city.add(c) && dist.add(d);
-//    }   
+    // get the distance
+    public int getDist(){
+        return dist;
+    }
+    // get the city
+    public String getCity(){
+        return city;
+    }
     @Override
     public boolean equals(Object obj){
-        if(!(obj instanceof Path)){ return false; }
+        if(!(obj instanceof Path)) return false;
         Path p = (Path)obj;
-        if(this.city == p.city){ return true; }
-    return false;
+        return this.city == p.city;
     } 
     @Override
     public int hashCode() {
