@@ -1,9 +1,9 @@
 /*
  * Player.java
- * Version 0.1.8    : Setup
+ * Version 0.1.9    : Setup.scoring
  * Programmer       : Adam Hennefer
  * Due Date         : 11/9/18
- * Last Modified    : 11/14/18 11:54
+ * Last Modified    : 11/20/18 11:54
  *
  * This class represents a player.
  *  
@@ -23,7 +23,7 @@ public class Player {
     private TrainPieces.COLOR pColor;
     private boolean turn = false;
     private boolean lastTurn = false;
-    //iterator for addClaimedRoute() method
+    //iterator for addClaimedRoute method
     private int it = 0;
     private List<Path> adjList[];
     
@@ -34,10 +34,8 @@ public class Player {
     public Player(String n, TrainPieces.COLOR c){
         //set player's name
         name = n;
-      
         //set player's colors
         pColor = c;
-        
         //initialize points set to zero    
         points = 0; 
     }
@@ -51,7 +49,7 @@ public class Player {
         //initialize ArrayList of forty five train pieces with player's color
         pieces = b.trainPieces.getPieces(pColor);
         //initialize an empty list of claimed routes
-        claimedRoutes = new LinkedList[46];
+        claimedRoutes = new LinkedList[36];
         //create adjacentcy list
         adjList = adjacentcyList();
         // return true if constructed
@@ -110,11 +108,16 @@ public class Player {
     // recieves two city names
     public boolean isAdjacent(String s1, String s2){
         if(s1 == s2) return false;
+        int index1, index2 = 0;
         List<Path>[] temp = getAdjacentcyList();
         Path c1 = new Path(s1,0);
         Path c2 = new Path(s2,0);
         for (int i=0; i< temp.length; i++){
-            if (temp[i].contains(c1) && temp[i].contains(c2)) return true;
+            if (temp[i].contains(c1) && temp[i].contains(c2)){ 
+                index1 = temp[i].indexOf(c1);
+                index2 = temp[i].indexOf(c2);
+                if (index1 == 0 || index2 == 0) return true;
+            }
         }
         return false;
     }
@@ -129,6 +132,27 @@ public class Player {
         int iter = it;
         it++;
         return iter+1 == it;
+    }
+    // receive's two city names and adds the points
+    public boolean calcPoints(String s1, String s2){
+        if(s1 == s2) return false;
+        int index1, index2 = 0;
+        List<Path>[] temp = getAdjacentcyList();
+        Path c1 = new Path(s1,0);
+        Path c2 = new Path(s2,0);
+        for (int i=0; i< temp.length; i++){
+            if (temp[i].contains(c1) && temp[i].contains(c2)){
+                index1 = temp[i].indexOf(c1);
+                index2 = temp[i].indexOf(c2);
+                if (index1 == 0 || index2 == 0){ 
+                    c1 = temp[i].get(index1);
+                    c2 = temp[i].get(index2);
+                    points =+ c1.getDist()+ c2.getDist();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     //retrives a specific train piece
     public TrainPiece getTrainPiece(int p){
