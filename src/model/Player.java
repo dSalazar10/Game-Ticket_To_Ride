@@ -3,7 +3,7 @@
  * Version 0.1.9    : Setup.scoring
  * Programmer       : Adam Hennefer
  * Due Date         : 11/9/18
- * Last Modified    : 11/20/18 11:54
+ * Last Modified    : 11/21/18 3:03
  *
  * This class represents a player.
  *  
@@ -147,7 +147,7 @@ public class Player {
                 if (index1 == 0 || index2 == 0){ 
                     c1 = temp[i].get(index1);
                     c2 = temp[i].get(index2);
-                    points =+ c1.getDist()+ c2.getDist();
+                    points += c1.getDist()+ c2.getDist();
                     return true;
                 }
             }
