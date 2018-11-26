@@ -32,7 +32,7 @@ public class Ticket2Ride {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         boolean claimroute = false;
         boolean drawDestCards = false;
         boolean playable = true;

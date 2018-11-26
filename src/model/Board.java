@@ -37,7 +37,7 @@ public class Board {
     /* *
      * Class Constructor
      */
-    public Board() {
+    public Board() throws Exception{
         trainDeck = new TrainCardDeck();
         destDeck = new DestinationTicketSet();
         trainPieces = new TrainPieces();
