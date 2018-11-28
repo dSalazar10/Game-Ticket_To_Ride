@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class BoardTest {
 
     @Test
-    public void testBoard() {
+    public void testBoard() throws Exception{
         Board b = new Board();
         //assertEquals(null, b.get2TrainCards());
     }

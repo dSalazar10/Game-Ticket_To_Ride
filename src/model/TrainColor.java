@@ -9,5 +9,5 @@
 package model;
 // enum in order with TrainType
 public enum TrainColor{
-    RAINBOW, PINK, WHILE, BLUE, YELLOW, ORANGE, BLACK, RED, GREEN
+    RAINBOW, PINK, WHITE, BLUE, YELLOW, ORANGE, BLACK, RED, GREEN
 }

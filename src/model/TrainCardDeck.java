@@ -7,11 +7,11 @@
  */
 package model;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Scanner;
 
 public class TrainCardDeck {
     /*
@@ -33,31 +33,30 @@ public class TrainCardDeck {
 	/*
 	 * Constructor makes all decks and shuffles cards
 	 */
-	public TrainCardDeck() {
-		locomotive = new TrainCard(0);
+	public TrainCardDeck() throws Exception {
+		String type, color;
+		int amount;
+	    locomotive = new TrainCard(0);
 		trainDeck = new LinkedList<TrainCard>();
 		tableCards = new ArrayList<TrainCard>();
 		trainDiscard = new LinkedList<TrainCard>();
-
-		int i = 0;
-		// creates the locomotive cards
-		// and adds them to the end of the deck
-		while (i < 14) {
-			trainDeck.add(new TrainCard(0));
-			i++;
-		}
-		i = 0;
-		int j = 1;
-		// Creates all cards and add them to the deck end of the deck
-
-		while (j < 9) {
-			while (i < 12) {
-				trainDeck.add(new TrainCard(j));
-				i++;
-			}
-			i = 0;
-			j++;
-		}
+		File cardType = new File("src\\resources\\TextFiles\\CardType.txt");
+		File cardNum = new File("src\\resources\\TextFiles\\CardNum.txt");
+		File cardColor = new File("src\\resources\\TextFiles\\CardColor.txt");
+        Scanner cardNReader = new Scanner(cardNum);
+		Scanner cardTReader = new Scanner(cardType);
+		Scanner cardCReader = new Scanner(cardColor);
+		int i;
+        while(cardNReader.hasNext() && cardTReader.hasNext()){
+            amount = Integer.parseInt(cardNReader.nextLine());
+            i = 0;
+            type = cardTReader.nextLine();
+            color = cardCReader.nextLine();
+            while(i < amount){
+                trainDeck.add(new TrainCard(type, color));
+                i++;
+            }
+        }
 		// Shuffle Cards
 		Collections.shuffle(trainDeck);
 		// 5 cards to the table
