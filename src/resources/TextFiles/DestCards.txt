@@ -1,0 +1,30 @@
+Denver,El Paso,4
+Kansas City,Houston,5
+New York,Atlanta,6
+Chicago,New Orleans,7
+Calgary,Salt Lake City,7
+Helena,Los Angeles,8
+Duluth,Houston,8
+Sault Ste. Marie,Nashville,8
+Montreal,Atlanta,9
+Sault Ste. Marie,Oklahoma City,9
+Seattle,Los Angeles,9
+Chicago,Santa Fe,9
+Duluth,El Paso,10
+Toronto,Miami,10
+Portland,Phoenix,11
+Dallas,New York City,11
+Denver,Pittsburgh,11
+Winnipeg,Little Rock,11
+Winnipeg,Houston,12
+Boston,Miami,12
+Vancouver,Santa Fe,13
+Calgary,Phoenix,13
+Montreal,New Orleans,13
+Los Angeles,Chicago,16
+San Francisco,Atlanta,17
+Portland,Nashville,17
+Vancouver,Montréal,20
+Los Angeles,Miami,20
+Los Angeles,New York City,21
+Seattle,New York,22
