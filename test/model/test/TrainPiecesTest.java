@@ -11,7 +11,7 @@
  * 20 test.testDuplicates();
  */
 
-package model.tests;
+package model.test;
 
 import model.TrainPiece;
 import model.TrainPieces;

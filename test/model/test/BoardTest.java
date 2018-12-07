@@ -6,7 +6,7 @@
  * Last Modified    : 10/21/18 10:25
  */
 
-package model.tests;
+package model.test;
 
 import model.Board;
 import org.junit.After;

@@ -6,7 +6,7 @@
  * Last Modified    : MM/DD/YY HH:HH
  */
 
-package model.tests;
+package model.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import model.TrainCard;

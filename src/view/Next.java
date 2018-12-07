@@ -13,7 +13,7 @@ import javafx.event.*;
 import model.Board;
 import model.*;
 import model.TrainCardDeck;
-import ticket2ride.Driver;
+import ticket2Ride.Driver;
 
 import java.io.FileNotFoundException;
 
