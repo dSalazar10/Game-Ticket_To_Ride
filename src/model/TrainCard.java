@@ -15,6 +15,10 @@ public class TrainCard{
 		this.color = TrainColor.values()[pos];
 		this.type = TrainType.values()[pos];
 	}
+	public TrainCard(String type, String color){
+		this.color = TrainColor.valueOf(color);
+		this.type = TrainType.valueOf(type);
+	}
 	public TrainColor getColor() { return this.color; }
 	public TrainType getType() {return this.type; }
 
