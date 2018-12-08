@@ -1,0 +1,19 @@
+HOW TO USE THE TEXTFILES
+
+DestCards.txt:
+This is used to create destination cards:
+
+<From Destination>,<To Destination>,<Points>,
+<From Destination>,<To Destination>,<Points>,
+
+CardColor.txt,CardNum.txt.CardType.txt:
+These are used for travle cards(cars, train, etc.) The Pattern use:
+they are made to be used together, line 1 relates to all other files
+
+CardColor		   CardNum	    			CardType
+ <Color 1>   <Number of this type 1>    <Type (locmotive etc) 1>
+ <Color 2>   <Number of this type 2>    <Type (locmotive etc) 2>
+	.					.							.
+	.					.							.
+	.					.							.
+ <Color n>   <Number of this type n>    <Type (locmotive etc) n>
