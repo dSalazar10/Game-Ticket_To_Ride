@@ -6,19 +6,19 @@
  * Last Modified    : MM/DD/YY HH:HH
  */
 
-package model.tests;
+package model.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import model.TrainCard;
 import model.TrainCardDeck;
 
 public class TrainCardDeckTest{
-    //TrainCardDeck x = new TrainCardDeck();
-    //TrainCard card1 = x.getTopofDeck();
-    //TrainCard card2 = new TrainCard(0);
+    TrainCardDeck x = new TrainCardDeck();
+    TrainCard card1 = x.getTopofDeck();
+    TrainCard card2 = new TrainCard(0);
 
     @Test
-    public void trainDeckTest() throws Exception {
-      //  assertEquals(card1, card2);
+    public void trainDeckTest(){
+        assertEquals(card1, card2);
     }
 }

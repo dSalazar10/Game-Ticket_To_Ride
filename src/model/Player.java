@@ -1,18 +1,21 @@
 /*
  * Player.java
- * Version 0.1.9    : Setup.scoring
+ * Version 0.1.9    : Setup.flexability
  * Programmer       : Adam Hennefer
- * Due Date         : 11/9/18
- * Last Modified    : 11/21/18 3:03
+ * Due Date         : 12/7/18
+ * Last Modified    : 12/7/18 3:03
  *
  * This class represents a player.
  *  
  */
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     private List<TrainPiece> pieces;
@@ -39,7 +42,7 @@ public class Player {
         //initialize points set to zero    
         points = 0; 
     }
-    public boolean addBoard(Board b){
+    public boolean addBoard(Board b) throws FileNotFoundException{
         //assign a player to the board
         board = b;
         //initialize ArrayList of player's train car cards
@@ -58,7 +61,20 @@ public class Player {
     }
 
     // create adjacentcy list
-    private List<Path>[] adjacentcyList(){    
+    private List<Path>[] adjacentcyList() throws FileNotFoundException{    
+//        File map = new File("src\\resources\\TextFiles\\map.txt");
+//        File mapWghts = new File("src\\resources\\TextFiles\\MapWeights.txt");
+//        
+//        Scanner m = new Scanner(map).useDelimiter(", ");
+//        Scanner w = new Scanner(mapWghts);//.useDelimiter(", ");
+//
+//        while(m.hasNext() == true && w.hasNext()== true){
+//            System.out.println(m.next().replace(',', ' ').trim());
+//            System.out.println(w.next().replace(',', ' ').trim());
+//        }
+//        System.out.println("Done!");
+//        
+        
         List<Path> adjList[] = new LinkedList[36];
             for (int i=0; i<36; i++) adjList[i] = new LinkedList<>();
                 adjList[0].add(new Path("Vancouver",0)); adjList[0].add(new Path("Calgary",3 )); adjList[0].add(new Path("Seattle", 1));

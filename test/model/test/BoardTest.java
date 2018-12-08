@@ -6,7 +6,7 @@
  * Last Modified    : 10/21/18 10:25
  */
 
-package model.tests;
+package model.test;
 
 import model.Board;
 import org.junit.After;
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class BoardTest {
 
     @Test
-    public void testBoard() throws Exception{
+    public void testBoard() {
         Board b = new Board();
         //assertEquals(null, b.get2TrainCards());
     }

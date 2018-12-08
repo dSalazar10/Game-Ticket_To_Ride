@@ -6,7 +6,7 @@
  * Last Modified    : MM/DD/YY HH:HH
  */
 
-package ticket2ride;
+package ticket2Ride;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
