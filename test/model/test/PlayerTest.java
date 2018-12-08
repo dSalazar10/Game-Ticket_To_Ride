@@ -5,7 +5,7 @@
  * Due Date         : 10/24/18
  * Last Modified    : 10/26/18 7:30
  */
-package model.tests;
+package model.test;
 
 import model.Player;
 import model.TrainPieces;

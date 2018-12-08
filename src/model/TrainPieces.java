@@ -75,7 +75,7 @@ public class TrainPieces {
             // failed to provide a proper color
             default: i = -1;
         }
-        if(i > 0 && isAvailable[i]) {
+        if(i > -1 && isAvailable[i]) {
             isAvailable[i] = false;
             return pieces.get(i);
         }
