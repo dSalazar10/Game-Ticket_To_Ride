@@ -21,7 +21,7 @@ public class Cards{
     static Image image;
     public static Button button;
     public static Button bCards (TrainCard card, int x)throws FileNotFoundException {
-        image = new Image(new FileInputStream("TrainCardImages\\" + card.getType() + ".jpg"));
+        image = new Image(new FileInputStream("TrainCardImages/" + card.getType() + ".jpg"));
         button = new Button(card.toString() + " Card");
         button.setStyle("-fx-font-family: papyrus");
         button.setGraphic(new ImageView(image));
